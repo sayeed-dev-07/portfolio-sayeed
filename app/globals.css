@@ -33,3 +33,9 @@ body {
   font-family:var(--font-outfit), Arial, Helvetica, sans-serif;
 }
 
+
+@layer utilities {
+  .navitems-span {
+    @apply text-[10px] sm:text-xs font-social text-start w-full text-[#a8c256]
+  }
+}
