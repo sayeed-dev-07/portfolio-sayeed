@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Outfit } from "next/font/google";
 import "./globals.css";
 import ScrollSmootherWrapper from "@/components/providers/ScrollSmoother";
 import localFont from 'next/font/local'
+import Navbar from "@/components/heroComponents/navbar";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -53,6 +54,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${helvitica.variable} ${social.variable} ${outfit.variable} ${futura.variable} ${myFont.variable} ${geistMono.variable} antialiased`}
       >
+        <Navbar/>
         <ScrollSmootherWrapper>
           {children}
         </ScrollSmootherWrapper>
