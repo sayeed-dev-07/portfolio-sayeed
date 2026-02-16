@@ -139,7 +139,7 @@ const Navbar = ({ navOpen }: { navOpen: boolean }) => {
                         viewBox="0 26.65999984741211 155.66000366210938 34.56999969482422"
 
                         data-asc="1.220703125"
-                        className='overflow-visible w-[100px] aspect-square'
+                        className='overflow-visible w-[80px] md:w-[130px] aspect-square'
                         width={100}
 
                     >

@@ -1,0 +1,43 @@
+'use client'
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import Image from 'next/image';
+import React, { useRef } from 'react';
+
+const ImgSwap = () => {
+  const scope = useRef<HTMLDivElement | null>(null);
+
+  useGSAP(() => {
+    const imgs = gsap.utils.selector(scope)(".swapImg");
+
+    
+    gsap.set(imgs[1], { opacity: 0 });
+
+    
+    gsap.timeline({ repeat: -1, repeatDelay: 1 })
+      .to(imgs[0], { opacity: 0, duration: 0.6, ease: "power2.inOut" })
+      .to(imgs[1], { opacity: 1, duration: 0.6, ease: "power2.inOut" }, "<")
+      .to(imgs[1], { opacity: 0, duration: 0.6, ease: "power2.inOut", delay: 1 })
+      .to(imgs[0], { opacity: 1, duration: 0.6, ease: "power2.inOut" }, "<");
+
+  }, { scope });
+
+  return (
+    <div ref={scope} className='w-[150px] sm:w-[200px] aspect-square relative'>
+      <Image
+        alt='img'
+        fill
+        src={'/img/pcimg1.webp'}
+        className='object-contain swapImg'
+      />
+      <Image
+        alt='img'
+        fill
+        src={'/img/pcimg2.webp'}
+        className='object-contain swapImg'
+      />
+    </div>
+  );
+};
+
+export default ImgSwap;

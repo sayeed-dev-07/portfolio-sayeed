@@ -20,7 +20,8 @@ const BounceSvg = () => {
         repeat: -1, // Infinite loop
         yoyo: true, // Go back to the start (Right) after finishing
         defaults: { ease: 'power1.inOut' },
-        force3D:true
+        force3D:true,
+        delay:3.5
       });
 
       // Move X axis (Left)

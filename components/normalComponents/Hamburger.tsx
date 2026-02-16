@@ -39,7 +39,7 @@ const Hamburger = ({ open }: { open: boolean }) => {
   return (
     <div
       ref={hamburgerRef}
-      className="cursor-pointer px-3 py-5 sm:px-4 rounded-full sm:py-6 flex flex-col gap-y-1.5 relative z-9999 bg-background"
+      className="cursor-pointer px-2.5 py-4.5 sm:px-4 rounded-full sm:py-6 flex flex-col gap-y-1.5 relative z-9999 bg-background"
     >
       <div className="line1 line rounded-md w-8 h-0.5 bg-foreground"></div>
       <div className="line2 line rounded-md w-8 h-0.5 bg-foreground"></div>
