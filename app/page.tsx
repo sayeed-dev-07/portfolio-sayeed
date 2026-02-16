@@ -90,7 +90,7 @@ export default function Home() {
   }, { scope: containerRef });
 
   return (
-    <div ref={containerRef} className="w-full overflow-hidden bg-foreground min-h-screen relative">
+    <div ref={containerRef} className="w-full  bg-foreground  relative">
       {/* Decorative SVGs */}
       <div ref={bounceRef} className="fixed -right-[70%] bottom-[5%] sm:bottom-[20%]">
         <BounceSvg />
@@ -101,7 +101,7 @@ export default function Home() {
 
       <Navbar navOpen={heroDone} />
 
-      <div className="h-dvh overflow-hidden text-background font-main uppercase flex items-center justify-center relative flex-col sm:px-4 px-2">
+      <div className="h-screen overflow-hidden text-background font-main uppercase flex items-center justify-center relative flex-col sm:px-4 px-2">
         <div className="sm:w-fit w-full flex gap-y-1.5 sm:gap-y-0 flex-col items-start ">
 
 
@@ -133,16 +133,17 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="min-h-screen flex items-center justify-center  flex-col">
-        <div className="w-full h-[20vh]">
-          <svg
-            viewBox="0 0 1440 160"
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-full h-full"
-            preserveAspectRatio="none"
-          >
-            <path
-              d="
+      <div>
+        <div className="flex min-h-screen relative flex-col">
+          <div className="w-full h-[20vh]">
+            <svg
+              viewBox="0 0 1440 160"
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-full h-full"
+              preserveAspectRatio="none"
+            >
+              <path
+                d="
       M0,80
       C180,40 260,20 360,40
       C460,60 520,120 640,110
@@ -152,15 +153,18 @@ export default function Home() {
       L0,160
       Z
     "
-              fill="#84a98c"
-            />
-          </svg>
+                fill="#84a98c"
+              />
+            </svg>
+
+          </div>
+          
+          <ProjectsWrapper/>
 
         </div>
-        <div className="flex-1 w-full -mt-3 bg-[#84a98c]">
-          <ScrollSection />
-        </div>
-        <div className="h-screen bg-amber-300"></div>
+      </div>
+      <div className="h-[80vh] ">
+
       </div>
     </div>
   );

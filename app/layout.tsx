@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Outfit } from "next/font/google";
 import "./globals.css";
-import ScrollSmootherWrapper from "@/components/providers/ScrollSmoother";
+import "lenis/dist/lenis.css";
+
 import localFont from 'next/font/local'
-import Navbar from "@/components/heroComponents/navbar";
+
+import LenisProvider from "@/components/providers/LenisProvider";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -12,22 +15,22 @@ const geistSans = Geist({
 const myFont = localFont({
   src: './fonts/font.woff', // Path to your file
   variable: '--font-custom',           // Optional: CSS variable name
-  display: 'swap',                     
+  display: 'swap',
 })
 const futura = localFont({
   src: './fonts/Futura-Bold.woff2', // Path to your file
   variable: '--font-futura',           // Optional: CSS variable name
-  display: 'swap',                    
+  display: 'swap',
 })
 const social = localFont({
   src: './fonts/ABCSocialMono-Regular.woff2', // Path to your file
   variable: '--font-social',           // Optional: CSS variable name
-  display: 'swap',                    
+  display: 'swap',
 })
 const helvitica = localFont({
   src: './fonts/HelveticaNowText-Regular.woff2', // Path to your file
   variable: '--font-helvitica',           // Optional: CSS variable name
-  display: 'swap',                    
+  display: 'swap',
 })
 
 const geistMono = Geist_Mono({
@@ -54,10 +57,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${helvitica.variable} ${social.variable} ${outfit.variable} ${futura.variable} ${myFont.variable} ${geistMono.variable} antialiased`}
       >
-        {/* <Navbar/> */}
-        {/* <ScrollSmootherWrapper> */}
+
+        <LenisProvider>
           {children}
-        {/* </ScrollSmootherWrapper> */}
+        </LenisProvider>
+
+
+
       </body>
     </html>
   );

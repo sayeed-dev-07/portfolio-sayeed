@@ -131,9 +131,9 @@ const Navbar = ({ navOpen }: { navOpen: boolean }) => {
     }, [hover])
 
     return (
-        <div className='fixed navbar opacity-0 -top-40 left-0 w-full z-999'>
+        <div className='fixed pointer-events-none navbar opacity-0 -top-40 left-0 w-full z-999'>
             <div className='sm:px-8 md:px-16 px-2 py-0.5 flex items-center justify-between'>
-                <div className='cursor-pointer relative z-9999'>
+                <div className='cursor-pointer pointer-events-auto relative z-9999'>
                     <svg ref={svgRef}
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 26.65999984741211 155.66000366210938 34.56999969482422"
@@ -154,13 +154,13 @@ const Navbar = ({ navOpen }: { navOpen: boolean }) => {
                     </svg>
                 </div>
 
-                <div onClick={() => setNavbarOpen((prev) => !prev)}>
+                <div className='pointer-events-auto' onClick={() => setNavbarOpen((prev) => !prev)}>
                     <Hamburger open={navbarOpen} />
                 </div>
             </div>
 
             {/* nav items  */}
-            <div ref={navItemsRef} className='h-[140vh] w-full flex  flex-col absolute left-0 -top-60 translate-y-[170vh]'>
+            <div ref={navItemsRef} className='h-[140vh] w-full flex  flex-col absolute left-0 pointer-events-auto -top-60 translate-y-[170vh]'>
                 <svg className='w-full block' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 220" preserveAspectRatio="none" ><ellipse
                     cx="720"
                     cy="680"
