@@ -4,6 +4,8 @@ import ProjectButton from "@/components/heroComponents/ProjectButton";
 import BounceSvg from "@/components/normalComponents/BounceSvg";
 import ImgSwap from "@/components/normalComponents/ImgSwap";
 import RollingSvg from "@/components/normalComponents/NormalSvg";
+import ScrollSection from "@/components/ProjectComponents/ProjectsWrapper";
+import ProjectsWrapper from "@/components/ProjectComponents/ProjectsWrapper";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
@@ -35,9 +37,9 @@ export default function Home() {
 
   useGSAP(() => {
     document.fonts.ready.then(() => {
-      const split1 = new SplitText(text1.current, { type: 'chars, lines' , mask: 'lines'});
+      const split1 = new SplitText(text1.current, { type: 'chars, lines', mask: 'lines' });
       const split3 = new SplitText(text3.current, { type: 'words, chars, lines', mask: 'lines' });
-      const split2 = new SplitText(text2.current, { type: 'words, lines', mask:'lines' });
+      const split2 = new SplitText(text2.current, { type: 'words, lines', mask: 'lines' });
 
       const tl = gsap.timeline({
         defaults: { ease: 'expo.out', duration: 1.2 },
@@ -71,13 +73,13 @@ export default function Home() {
         .fromTo(projectButtonnRef.current, {
           y: 30,
           autoAlpha: 0,
-          
-        },{
-          y:0,
-          autoAlpha:1,
-          duration: 0.4,
+
+        }, {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.7,
         },
-         "-=0.3");
+          "-=0.7");
 
       return () => {
         split1.revert();
@@ -131,7 +133,35 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="min-h-[100vh]" />
+      <div className="min-h-screen flex items-center justify-center  flex-col">
+        <div className="w-full h-[20vh]">
+          <svg
+            viewBox="0 0 1440 160"
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-full h-full"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="
+      M0,80
+      C180,40 260,20 360,40
+      C460,60 520,120 640,110
+      C780,100 900,70 1040,60
+      C1180,50 1280,60 1440,40
+      L1440,160
+      L0,160
+      Z
+    "
+              fill="#84a98c"
+            />
+          </svg>
+
+        </div>
+        <div className="flex-1 w-full -mt-3 bg-[#84a98c]">
+          <ScrollSection />
+        </div>
+        <div className="h-screen bg-amber-300"></div>
+      </div>
     </div>
   );
 }

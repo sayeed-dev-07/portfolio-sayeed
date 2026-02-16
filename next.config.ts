@@ -1,10 +1,18 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   images: {
-    domains: ['www.yamatoen.or.jp'], 
-  },  
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'www.yamatoen.or.jp',
+        port: '',
+        pathname: '/**', 
+      },
+    ],
+  },
+  
+  transpilePackages: ['gsap'],
 };
 
 export default nextConfig;

@@ -11,32 +11,45 @@ const ProjectButton = ({ text }: { text: string }) => {
   const tl = useRef<GSAPTimeline | null>(null);
 
   const { contextSafe } = useGSAP(() => {
-
-    // initial state
-    gsap.set(buttonBg.current, { yPercent: 100 });
+    // Initial state: Background tucked away below
+    gsap.set(buttonBg.current, { yPercent: 101 });
 
     tl.current = gsap.timeline({ paused: true });
 
     tl.current
       .to(buttonBg.current, {
         yPercent: 0,
-        duration: 0.35,
-        ease: "power2.out",
-        transformOrigin: 'center'
+        duration: 0.4,
+        ease: "power2", // Snappy slide up
       })
       .to(buttonText.current, {
-        color: "#fff",
+        color: "#fff", // Adjust this to your foreground/brand color
         duration: 0.2
-      }, "<0.1");
+      }, "<");
 
   }, { scope: buttonWrapper });
 
+  // HOVER IN: Squash down slightly to show "pressure"
   const hoverIn = contextSafe(() => {
+    gsap.to(buttonWrapper.current, {
+      scale: 0.96,
+      duration: 0.3,
+      ease: 'power3.out',
+      overwrite: 'auto' // Prevents conflict with hoverOut
+    });
     tl.current?.play();
   });
 
+  // HOVER OUT: The "Bounce" happens here
   const hoverOut = contextSafe(() => {
-    tl.current?.timeScale(1.2).reverse();
+    tl.current?.reverse();
+
+    gsap.to(buttonWrapper.current, {
+      scale: 1,
+      duration: 1, 
+      ease: 'elastic.out(1.4, 0.6)', 
+      overwrite: 'auto'
+    });
   });
 
   return (
@@ -44,9 +57,9 @@ const ProjectButton = ({ text }: { text: string }) => {
       ref={buttonWrapper}
       onMouseEnter={hoverIn}
       onMouseLeave={hoverOut}
-      className="text-md cursor-pointer font-social font-semibold border-2 relative overflow-hidden px-3 py-1.5 rounded-xs"
+      className="text-md cursor-pointer font-social font-semibold border-2 border-background relative overflow-hidden px-6 py-2 rounded-md inline-block group"
     >
-      <div ref={buttonText} className="relative z-10 text-background">
+      <div ref={buttonText} className="relative z-10 text-background transition-colors duration-300">
         {text}
       </div>
 
