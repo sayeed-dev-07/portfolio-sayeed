@@ -13,7 +13,7 @@ import TextRevealAnimation from '../normalComponents/TextRevealAnimation';
 
 gsap.registerPlugin(MorphSVGPlugin, DrawSVGPlugin)
 
-const Navbar = () => {
+const Navbar = ({ navOpen }: { navOpen: boolean }) => {
     const [hover, setHover] = useState(false)
     const [navbarOpen, setNavbarOpen] = useState(false)
     const navItemsRef = useRef<HTMLDivElement | null>(null)
@@ -21,7 +21,20 @@ const Navbar = () => {
     const svgRef = useRef(null)
     const gojoSvg = useRef(null)
 
+
     useGSAP(() => {
+        if (navOpen) {
+            gsap.to('.navbar', {
+                top: 0,
+                duration: 0.8,
+                opacity: 1,
+                ease: 'power2'
+            })
+        }
+    }, [navOpen])
+
+    useGSAP(() => {
+
         timeLine.current = gsap.timeline({ paused: true })
             .to(navItemsRef.current, {
                 y: 0,
@@ -56,7 +69,7 @@ const Navbar = () => {
             repeatDelay: 2
         })
         tl.to(svgRef.current, {
-            scale: 0.9,
+            scale: 0.7,
             duration: 0.4,
         }, '-=2')
 
@@ -118,15 +131,15 @@ const Navbar = () => {
     }, [hover])
 
     return (
-        <div className='fixed top-0 left-0 w-full z-999'>
-            <div className='sm:px-8 md:px-16 px-2 py-2 flex items-center justify-between'>
+        <div className='fixed navbar opacity-0 -top-40 left-0 w-full z-999'>
+            <div className='sm:px-8 md:px-16 px-2 py-0.5 flex items-center justify-between'>
                 <div className='cursor-pointer relative z-9999'>
                     <svg ref={svgRef}
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 26.65999984741211 155.66000366210938 34.56999969482422"
 
                         data-asc="1.220703125"
-                        className='overflow-visible aspect-square'
+                        className='overflow-visible w-[100px] aspect-square'
                         width={100}
 
                     >

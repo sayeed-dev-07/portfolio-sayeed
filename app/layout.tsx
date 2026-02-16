@@ -54,10 +54,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${helvitica.variable} ${social.variable} ${outfit.variable} ${futura.variable} ${myFont.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar/>
-        <ScrollSmootherWrapper>
+        {/* <Navbar/> */}
+        {/* <ScrollSmootherWrapper> */}
           {children}
-        </ScrollSmootherWrapper>
+        {/* </ScrollSmootherWrapper> */}
       </body>
     </html>
   );

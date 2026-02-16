@@ -23,9 +23,7 @@
     --foreground: #ededed;
   }
 }
-.invert-svg {
-  mix-blend-mode: difference;
-}
+
 
 body {
   background: var(--background);
