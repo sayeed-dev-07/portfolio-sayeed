@@ -1,14 +1,20 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 'use client'
 import Navbar from "@/components/heroComponents/navbar";
 import ProjectButton from "@/components/heroComponents/ProjectButton";
 import BounceSvg from "@/components/normalComponents/BounceSvg";
 import ImgSwap from "@/components/normalComponents/ImgSwap";
 import RollingSvg from "@/components/normalComponents/NormalSvg";
-import ScrollSection from "@/components/ProjectComponents/ProjectsWrapper";
+
 import ProjectsWrapper from "@/components/ProjectComponents/ProjectsWrapper";
+import { useLenis } from "@/components/providers/LenisProvider";
+
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
+
+
+
 import { useRef, useState } from "react";
 
 gsap.registerPlugin(useGSAP, SplitText)
@@ -40,6 +46,8 @@ export default function Home() {
       const split1 = new SplitText(text1.current, { type: 'chars, lines', mask: 'lines' });
       const split3 = new SplitText(text3.current, { type: 'words, chars, lines', mask: 'lines' });
       const split2 = new SplitText(text2.current, { type: 'words, lines', mask: 'lines' });
+
+
 
       const tl = gsap.timeline({
         defaults: { ease: 'expo.out', duration: 1.2 },
@@ -77,9 +85,9 @@ export default function Home() {
         }, {
           y: 0,
           autoAlpha: 1,
-          duration: 0.7,
+          duration: 1,
         },
-          "-=0.7");
+          "-=0.5");
 
       return () => {
         split1.revert();
@@ -158,8 +166,8 @@ export default function Home() {
             </svg>
 
           </div>
-          
-          <ProjectsWrapper/>
+
+          <ProjectsWrapper />
 
         </div>
       </div>

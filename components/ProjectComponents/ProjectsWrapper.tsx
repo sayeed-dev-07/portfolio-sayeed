@@ -13,6 +13,8 @@ export default function ScrollSection() {
     const container = useRef<HTMLDivElement>(null)
     const pillNamesRef = useRef<(HTMLSpanElement | null)[]>([])
     const pillContainersRef = useRef<(HTMLDivElement | null)[]>([])
+    const leftRef = useRef<HTMLDivElement>(null)
+
     const [activeIndex, setActiveIndex] = useState(0)
 
     const indexChange = (index: number) => {
@@ -25,8 +27,9 @@ export default function ScrollSection() {
             trigger: container.current,
             start: 'top top',
             end: 'bottom bottom',
-            pin: '.left-content',
+            pin: leftRef.current,
             pinSpacing: false,
+            anticipatePin:1,
             
         })
     }, { scope: container })
@@ -70,10 +73,10 @@ export default function ScrollSection() {
     }, [activeIndex]) // 👈 This triggers the animation whenever activeIndex updates
 
     return (
-        <section ref={container} className="flex -mt-3 bg-[#85a98d] flex-row w-full relative">
+        <section ref={container} className="flex -mt-3 bg-[#85a98d] md:flex-row flex-col min-h-screen w-full relative">
 
             {/* LEFT SIDE: Pinned Navigation */}
-            <div className="left-content w-1/3 h-screen flex flex-col justify-center px-10  gap-y-6">
+            <div ref={leftRef} className="bg-[#84a98c] md:w-1/3 w-full md:h-screen h-fit py-4 md:py-0 flex flex-col justify-start md:justify-center lg:px-10 px-3 relative z-50  gap-y-6">
             <p className='uppercase font-main text-5xl'>Projects</p>
                 <div className="flex flex-wrap gap-x-4 gap-y-3">
                     {projectData.map((item, index) => (
@@ -95,7 +98,7 @@ export default function ScrollSection() {
             </div>
 
             {/* RIGHT SIDE: Scrollable Cards */}
-            <div className="w-2/3 flex flex-col overflow-hidden">
+            <div className="md:w-2/3 w-full z-40 flex flex-col overflow-hidden">
                 {projectData.map((item) => (
                     <div key={item.id} className="h-screen flex items-center justify-center">
                         <ProjectCard 
