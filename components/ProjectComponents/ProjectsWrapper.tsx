@@ -29,7 +29,7 @@ export default function ScrollSection() {
             end: 'bottom bottom',
             pin: leftRef.current,
             pinSpacing: false,
-            anticipatePin:1,
+            anticipatePin:0,
             
         })
     }, { scope: container })

@@ -1,56 +1,44 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 'use client';
 
-import { ReactNode, useEffect, useRef } from 'react';
+import { ReactNode, useEffect, useState, createContext, useContext } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 
-gsap.registerPlugin(ScrollTrigger);
+const LenisContext = createContext<Lenis | null>(null);
+export const useLenis = () => useContext(LenisContext);
 
-type Props = {
-  children: ReactNode;
-};
-
-const LenisProvider = ({ children }: Props) => {
-  const lenisRef = useRef<Lenis | null>(null);
+export const LenisProvider = ({ children }: { children: ReactNode }) => {
+  const [lenis, setLenis] = useState<Lenis | null>(null);
 
   useEffect(() => {
-    // 1. Initialize Lenis
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Standard easeOutExpo
+    const instance = new Lenis({
+      duration: 1.3,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
     });
 
-    lenisRef.current = lenis;
+    setLenis(instance); // This triggers a re-render so useLenis() works!
 
-    // 2. Sync ScrollTrigger with Lenis
-    lenis.on('scroll', ScrollTrigger.update);
+    instance.on('scroll', ScrollTrigger.update);
 
-    // 3. Hook Lenis into GSAP's ticker
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000); // Convert seconds to milliseconds
-    });
+    const update = (time: number) => {
+      instance.raf(time * 1000);
+    };
 
-    // 4. Disable GSAP's default lag smoothing (improves sync)
+    gsap.ticker.add(update);
     gsap.ticker.lagSmoothing(0);
 
     return () => {
-      // Cleanup
-      lenis.destroy();
-      gsap.ticker.remove((time) => {
-        lenis.raf(time * 1000);
-      });
+      instance.destroy();
+      gsap.ticker.remove(update);
     };
   }, []);
 
   return (
-    // Lenis doesn't require specific wrappers, 
-    // so we can just return a fragment or a simple div.
-    <>
+    <LenisContext.Provider value={lenis}>
       {children}
-    </>
+    </LenisContext.Provider>
   );
 };
-
-export default LenisProvider;

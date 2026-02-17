@@ -4,8 +4,9 @@ import "./globals.css";
 import "lenis/dist/lenis.css";
 
 import localFont from 'next/font/local'
+import { LenisProvider } from "@/components/providers/LenisProvider";
 
-import LenisProvider from "@/components/providers/LenisProvider";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

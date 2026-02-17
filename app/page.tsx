@@ -9,6 +9,7 @@ import RollingSvg from "@/components/normalComponents/NormalSvg";
 import ProjectsWrapper from "@/components/ProjectComponents/ProjectsWrapper";
 import { useLenis } from "@/components/providers/LenisProvider";
 
+
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
@@ -29,7 +30,7 @@ export default function Home() {
   const bounceRef = useRef<HTMLDivElement | null>(null)
   const rollingSvgRef = useRef<HTMLDivElement | null>(null)
   const pcImgRef = useRef<HTMLDivElement | null>(null)
-
+  const lenis = useLenis()
 
   useGSAP(() => {
     if (heroDone) {
@@ -51,7 +52,15 @@ export default function Home() {
 
       const tl = gsap.timeline({
         defaults: { ease: 'expo.out', duration: 1.2 },
-        onComplete: () => setHeroDone(true)
+        onComplete: () => {
+          setHeroDone(true)
+          document.body.style.overflow = '';
+          lenis?.start()
+        },
+        onStart: () => {
+          lenis?.stop(); // Stops scroll when intro starts
+          document.body.style.overflow = 'hidden';
+        }
       });
 
       tl.set([text1.current, text2.current, text3.current], { opacity: 1 });
@@ -95,7 +104,7 @@ export default function Home() {
         split3.revert();
       };
     })
-  }, { scope: containerRef });
+  }, { scope: containerRef , dependencies: [lenis]});
 
   return (
     <div ref={containerRef} className="w-full  bg-foreground  relative">
