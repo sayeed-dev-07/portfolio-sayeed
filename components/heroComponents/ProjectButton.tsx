@@ -5,68 +5,79 @@ import gsap from 'gsap';
 import React, { useRef } from 'react';
 
 const ProjectButton = ({ text }: { text: string }) => {
-  const buttonText = useRef<HTMLDivElement | null>(null);
+  const container = useRef<HTMLDivElement | null>(null);
   const buttonBg = useRef<HTMLDivElement | null>(null);
-  const buttonWrapper = useRef<HTMLDivElement | null>(null);
+  const primaryText = useRef<HTMLDivElement | null>(null);
+  const secondaryText = useRef<HTMLDivElement | null>(null);
+  
   const tl = useRef<GSAPTimeline | null>(null);
 
   const { contextSafe } = useGSAP(() => {
-    // Initial state: Background tucked away below
-    gsap.set(buttonBg.current, { yPercent: 101 });
+    // 1. Set initial states
+    // Background starts scaled down (invisible) at the bottom
+    gsap.set(buttonBg.current, { scaleY: 0, transformOrigin: "bottom" });
+    
+    // Secondary text sits below the visible area, waiting to come up
+    gsap.set(secondaryText.current, { yPercent: 100 });
 
-    tl.current = gsap.timeline({ paused: true });
+    tl.current = gsap.timeline({ paused: true, defaults: { duration: 0.5, ease: "expo.out" } });
 
     tl.current
+      // Animate Background
       .to(buttonBg.current, {
-        yPercent: 0,
-        duration: 0.4,
-        ease: "power2", // Snappy slide up
+        scaleY: 1,
       })
-      .to(buttonText.current, {
-        color: "#fff", // Adjust this to your foreground/brand color
-        duration: 0.2
+      // Roll the Text (Staggered slightly)
+      .to(primaryText.current, {
+        yPercent: -100,
+      }, "<")
+      .to(secondaryText.current, {
+        yPercent: 0,
       }, "<");
 
-  }, { scope: buttonWrapper });
+  }, { scope: container });
 
-  // HOVER IN: Squash down slightly to show "pressure"
   const hoverIn = contextSafe(() => {
-    gsap.to(buttonWrapper.current, {
-      scale: 0.96,
-      duration: 0.3,
-      ease: 'power3.out',
-      overwrite: 'auto' // Prevents conflict with hoverOut
-    });
+    // Play the fill/roll animation
     tl.current?.play();
+    
+    // The "Squash" pressure effect
+    
   });
 
-  // HOVER OUT: The "Bounce" happens here
   const hoverOut = contextSafe(() => {
-    tl.current?.reverse();
-
-    gsap.to(buttonWrapper.current, {
-      scale: 1,
-      duration: 1, 
-      ease: 'elastic.out(1.4, 0.6)', 
-      overwrite: 'auto'
-    });
+    // Reverse the fill/roll animation
+    tl.current?.timeScale(1.2).reverse();
+    
+    // The "Elastic Bounce" release
+   
   });
 
   return (
     <div
-      ref={buttonWrapper}
+      ref={container}
       onMouseEnter={hoverIn}
       onMouseLeave={hoverOut}
-      className="text-md cursor-pointer font-social font-semibold border-2 border-background relative overflow-hidden px-6 py-2 rounded-md inline-block group"
+      className="group relative inline-block cursor-pointer overflow-hidden rounded-lg border border-neutral-800 bg-transparent px-6 py-2.5 font-social font-semibold text-neutral-800"
     >
-      <div ref={buttonText} className="relative z-10 text-background transition-colors duration-300">
-        {text}
+      {/* Text Wrapper: 
+        We use a wrapper to hold two copies of the text.
+        1. primaryText: The one you see initially.
+        2. secondaryText: The one waiting below.
+      */}
+      <div className="relative z-10 overflow-hidden">
+        <div ref={primaryText} className="relative block transition-colors  duration-300 group-hover:text-white">
+          {text}
+        </div>
+        <div ref={secondaryText} className="absolute inset-0 block text-white">
+          {text}
+        </div>
       </div>
 
-      {/* sliding background */}
+      {/* Sliding Background */}
       <div
         ref={buttonBg}
-        className="absolute inset-0 bg-background z-0"
+        className="absolute inset-0 -z-0 bg-neutral-900" 
       />
     </div>
   );

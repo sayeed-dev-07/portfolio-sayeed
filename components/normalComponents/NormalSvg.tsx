@@ -53,7 +53,7 @@ const RollingSvg = () => {
         ref={svgRef}
         viewBox="0 0 600 600"
         xmlns="http://www.w3.org/2000/svg"
-        className="md:w-32 w-24 aspect-square"
+        className="md:w-32 w-20 aspect-square"
         style={{ overflow: 'visible' }}
       >
         {/* FACE */}

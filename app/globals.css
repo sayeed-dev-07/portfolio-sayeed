@@ -62,3 +62,31 @@ html.lenis body {
   pointer-events: none;
 }
 
+/* Scroll bar customization  */
+
+
+/* ===== Chrome / Edge / Safari ===== */
+/* ===== Chrome, Edge, Safari ===== */
+::-webkit-scrollbar {
+  width: 40px;
+}
+
+::-webkit-scrollbar-track {
+  background: #cfe59c; /* optional dark track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #38bdf8; /* sky blue */
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0ea5e9; /* deeper sky blue on hover */
+}
+
+
+/* ===== Firefox ===== */
+html {
+  scrollbar-width: wider;
+  scrollbar-color: #fa8304 #0b0f14;
+}

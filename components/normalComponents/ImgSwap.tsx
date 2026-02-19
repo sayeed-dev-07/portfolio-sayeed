@@ -4,7 +4,7 @@ import gsap from 'gsap';
 import Image from 'next/image';
 import React, { useRef } from 'react';
 
-const ImgSwap = () => {
+const ImgSwap = ({link1, link2}:{link1: string, link2: string}) => {
   const scope = useRef<HTMLDivElement | null>(null);
 
   useGSAP(() => {
@@ -27,13 +27,13 @@ const ImgSwap = () => {
       <Image
         alt='img'
         fill
-        src={'/img/pcimg1.webp'}
+        src={link1}
         className='object-contain swapImg'
       />
       <Image
         alt='img'
         fill
-        src={'/img/pcimg2.webp'}
+        src={link2}
         className='object-contain swapImg'
       />
     </div>

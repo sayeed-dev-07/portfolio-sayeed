@@ -78,7 +78,7 @@ const BounceSvg = () => {
         ref={svgRef}
         viewBox="0 0 600 600"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-20 aspect-square" // Adjusted width for visibility
+        className="sm:w-20 w-14 aspect-square" // Adjusted width for visibility
         style={{ overflow: 'visible' }}
         
       >

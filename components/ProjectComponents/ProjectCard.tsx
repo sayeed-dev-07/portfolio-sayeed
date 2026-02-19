@@ -85,7 +85,7 @@ const ProjectCard = ({ data, func }: { data: dataProp, func: (index: number) => 
                 {/* Card Content */}
                 <div className='w-full rounded-3xl h-full relative z-10  inset-0 bg-white'>
                     <div className='w-full p-3 md:p-4 pb-0'>
-                    <div className='relative w-full aspect-video  overflow-hidden rounded-[2rem] shadow-inner bg-gray-100'>
+                    <div className='relative w-full aspect-video  overflow-hidden rounded-3xl shadow-inner bg-gray-100'>
                         <Image 
                             alt={data.name} 
                             src={data.img} 
@@ -125,7 +125,7 @@ const ProjectCard = ({ data, func }: { data: dataProp, func: (index: number) => 
                         </div>
                     </div>
                         <div className='dot border-2 border-dashed border-[#d7d2d1]'></div>
-                        <div className='flex flex-wrap gap-x-5 gap-y-2'>
+                        <div className='flex flex-wrap gap-x-2 gap-y-2'>
                             {
                                 data.tech.map((itemName, idx) => {
                                     return <TechBox key={data.name + idx} text={itemName} />

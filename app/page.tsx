@@ -59,7 +59,7 @@ export default function Home() {
         },
         onStart: () => {
           lenis?.stop(); // Stops scroll when intro starts
-          document.body.style.overflow = 'hidden';
+          document.body.style.overflow = 'show';
         }
       });
 
@@ -87,14 +87,9 @@ export default function Home() {
           duration: 1,
         }, "-=0.8")
 
-        .fromTo(projectButtonnRef.current, {
-          y: 30,
-          autoAlpha: 0,
-
-        }, {
+        .to(projectButtonnRef.current, {
           y: 0,
           autoAlpha: 1,
-          duration: 1,
         },
           "-=0.5");
 
@@ -140,13 +135,13 @@ export default function Home() {
           </p>
 
 
-          <div ref={projectButtonnRef} className="mt-6 relative z-50 opacity-0" >
+          <div ref={projectButtonnRef} className="mt-6 opacity-0 translate-y-full relative z-50 opacity-0" >
             <ProjectButton text="Projects" />
           </div>
         </div>
 
         <div ref={pcImgRef} className="absolute -bottom-[70%]">
-          <ImgSwap />
+          <ImgSwap link1="/img/pcimg1.webp" link2="/img/pcimg2.webp"/>
         </div>
       </div>
 
