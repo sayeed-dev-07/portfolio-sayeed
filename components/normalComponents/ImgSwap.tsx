@@ -23,7 +23,7 @@ const ImgSwap = ({link1, link2}:{link1: string, link2: string}) => {
   }, { scope });
 
   return (
-    <div ref={scope} className='w-[150px] sm:w-[200px] aspect-square relative'>
+    <div ref={scope} className='w-[150px] sm:w-[165px] md:w-[180px] lg:w-[200px] aspect-square relative'>
       <Image
         alt='img'
         fill
