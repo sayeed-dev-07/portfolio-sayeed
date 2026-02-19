@@ -92,7 +92,7 @@ export default function ScrollSection() {
     }, [activeIndex]) // 👈 This triggers the animation whenever activeIndex updates
 
     return (
-        <section ref={container} className="flex projectSection -mt-3 bg-[#85a98d] md:flex-row flex-col min-h-screen w-full relative overflow-y-visible">
+        <section ref={container} className="flex projectSection -mt-3 bg-[#85a98d] md:flex-row flex-col min-h-screen w-full relative z-5 overflow-y-visible">
             <div className='absolute z-100 left-25 md:left-5 md:-bottom-20 -bottom-15'>
                     <ImgSwap link1='/svg/1.svg' link2='/svg/2.svg'/>
             </div>

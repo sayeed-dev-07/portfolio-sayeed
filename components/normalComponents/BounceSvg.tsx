@@ -73,7 +73,7 @@ const BounceSvg = () => {
   );
 
   return (
-    <div ref={containerRef} className="flex justify-center items-center">
+    <div ref={containerRef} className="flex justify-center items-center ">
       <svg
         ref={svgRef}
         viewBox="0 0 600 600"

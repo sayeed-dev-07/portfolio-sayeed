@@ -5,23 +5,27 @@ import ProjectButton from "@/components/heroComponents/ProjectButton";
 import BounceSvg from "@/components/normalComponents/BounceSvg";
 import ImgSwap from "@/components/normalComponents/ImgSwap";
 import RollingSvg from "@/components/normalComponents/NormalSvg";
+import PhotoGallery from "@/components/normalComponents/PhotoGallery";
 
 import ProjectsWrapper from "@/components/ProjectComponents/ProjectsWrapper";
 import { useLenis } from "@/components/providers/LenisProvider";
+import { galleryData } from "@/public/data/imgData";
 
 
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 
 
 
 import { useRef, useState } from "react";
 
-gsap.registerPlugin(useGSAP, SplitText)
+gsap.registerPlugin(useGSAP, SplitText, ScrollTrigger)
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement | null>(null)
+  const paralaxRef = useRef<HTMLDivElement | null>(null)
   const projectButtonnRef = useRef<HTMLDivElement | null>(null)
   const text1 = useRef<HTMLDivElement | null>(null)
   const text2 = useRef<HTMLDivElement | null>(null)
@@ -42,6 +46,7 @@ export default function Home() {
     }
   }, [heroDone])
 
+  
   useGSAP(() => {
     document.fonts.ready.then(() => {
       const split1 = new SplitText(text1.current, { type: 'chars, lines', mask: 'lines' });
@@ -99,15 +104,15 @@ export default function Home() {
         split3.revert();
       };
     })
-  }, { scope: containerRef , dependencies: [lenis]});
+  }, { scope: containerRef, dependencies: [lenis] });
 
   return (
-    <div ref={containerRef} className="w-full  bg-foreground  relative">
+    <div ref={containerRef} className="w-full z-0 bg-foreground  relative">
       {/* Decorative SVGs */}
-      <div ref={bounceRef} className="fixed -right-[70%] bottom-[5%] sm:bottom-[20%]">
+      <div ref={bounceRef} className="fixed z-2  -right-[70%] bottom-[5%] sm:bottom-[20%] ">
         <BounceSvg />
       </div>
-      <div ref={rollingSvgRef} className="fixed -left-[45%] top-[25%] ">
+      <div ref={rollingSvgRef} className="fixed z-2 -left-[45%] top-[25%] ">
         <RollingSvg />
       </div>
 
@@ -141,12 +146,12 @@ export default function Home() {
         </div>
 
         <div ref={pcImgRef} className="absolute -bottom-[70%]">
-          <ImgSwap link1="/img/pcimg1.webp" link2="/img/pcimg2.webp"/>
+          <ImgSwap link1="/img/pcimg1.webp" link2="/img/pcimg2.webp" />
         </div>
       </div>
 
       <div>
-        <div className="flex min-h-screen relative flex-col">
+        <div id="ProjectSection" className="flex -mb-[100vh] min-h-screen relative z-5 flex-col">
           <div className="w-full h-[20vh]">
             <svg
               viewBox="0 0 1440 160"
@@ -172,10 +177,24 @@ export default function Home() {
           </div>
 
           <ProjectsWrapper />
+          <div className="-mt-4  w-full h-[20vh]">
+            <svg className="w-full" xmlns="http://www.w3.org/2000/svg" viewBox="5 5 1405 107.1">
+              <path d="M0,80
+      C180,140 360,20 720,60
+      C1080,100 1260,40 1440,60
+      L1440,0
+      L0,0
+      Z"  fill="#85a98d" />
+            </svg>
+          </div>
+
 
         </div>
       </div>
-      <div className="h-[80vh] ">
+      <div ref={paralaxRef} className="sticky top-0 left-0 gallery  z-1 w-full">
+        <PhotoGallery images={galleryData} />
+      </div>
+      <div className="min-h-screen relative z-2 bg-amber-700 mt-[100vh]">
 
       </div>
     </div>
