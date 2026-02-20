@@ -93,7 +93,7 @@ export default function ScrollSection() {
 
     return (
         <section ref={container} className="flex projectSection -mt-3 bg-[#85a98d] md:flex-row flex-col min-h-screen w-full relative z-5 overflow-y-visible">
-            <div className='absolute z-100 left-[25%] sm:left-[35%] md:left-5 md:-bottom-7 -bottom-22'>
+            <div className='absolute z-100 left-[25%] sm:left-[35%] md:left-5 md:-bottom-7 -bottom-21'>
                     <ImgSwap link1='/svg/1.svg' link2='/svg/2.svg'/>
             </div>
             {/* LEFT SIDE: Pinned Navigation */}
