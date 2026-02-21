@@ -91,3 +91,15 @@ html {
   scrollbar-color: #fa8304 #0b0f14;
 }
 
+::selection {
+  background-color: #000;
+  /* The dark gray from your image */
+  color: #fff;
+  /* Your 'milk' color (adjust hex if needed) */
+}
+
+/* Firefox specific */
+::-moz-selection {
+  background-color: #000;
+  color: #fff;
+}
