@@ -36,8 +36,21 @@ export default function Home() {
   const rollingSvgRef = useRef<HTMLDivElement | null>(null)
   const pcImgRef = useRef<HTMLDivElement | null>(null)
   const aboutMeSvgRef = useRef<HTMLDivElement | null>(null)
+  const dividerRef = useRef<HTMLDivElement | null>(null)
   const lenis = useLenis()
   const [aboutLogo, setAboutLogo] = useState(false)
+  const [sticky, setSticky] = useState(true)
+
+  
+  useGSAP(() => {
+    ScrollTrigger.create({
+      trigger: dividerRef.current,
+      start: 'bottom bottom',
+      onEnter: () => setSticky(false),      // Fires when scrolling down past the start point
+      onLeaveBack: () => setSticky(true)  // Fires when scrolling back up past the start point
+    });
+  });
+
 
   useGSAP(() => {
     if (heroDone) {
@@ -62,7 +75,7 @@ export default function Home() {
       scrollTrigger: {
         trigger: aboutMeSvgRef.current,
         start: "top 70%",
-        
+
       },
       force3D: true,
       onComplete: () => {
@@ -262,12 +275,12 @@ export default function Home() {
 
         </div>
       </div>
-      <div ref={paralaxRef} className="sticky top-0 left-0 gallery  z-2 w-full">
+      <div ref={paralaxRef} className={`${sticky ? ' sticky top-0 left-0': 'relative'} gallery  z-2 w-full`}>
         <PhotoGallery images={galleryData} />
       </div>
 
       {/* devider div  */}
-      <div className="min-h-screen mt-[100vh]">
+      <div ref={dividerRef} className="min-h-screen mt-[100vh]">
         <div className="relative z-6">
           <svg
             viewBox="0 0 1440 160"
@@ -294,7 +307,7 @@ export default function Home() {
         </div>
 
         {/* rest of the page  */}
-        <div className="bg-foreground z-6 relative">
+        <div className="bg-transparent z-6 relative">
           <div className="absolute -rotate-25  top-[1%]">
 
             <svg xmlns="http://www.w3.org/2000/svg"
@@ -364,13 +377,19 @@ export default function Home() {
 
               </svg>
             </div>
-            <AboutMe/>
+            <AboutMe />
           </div>
-          <div>
+          
+        </div>
+
+      </div>
+      
+      <div className="min-h-screen bg-foreground">
+        <div className="h-[20vh] -mt-3  relative z-5 w-full">
             <svg
               viewBox="0 0 1440 160"
               preserveAspectRatio="none"
-              className="w-full h-[20vh]"
+              className="w-full h-full"
             >
               <path
                 d="
@@ -388,14 +407,12 @@ export default function Home() {
                 fill="#e2d7a8"
               />
             </svg>
+          </div>
+          <div >
 
           </div>
 
-          <div className="min-h-screen bg-foreground relative z-4">
-
-          </div>
-        </div>
-
+          {/* i neeed to use on complete to remove the sticky on the img palate */}
       </div>
     </div>
   );
