@@ -10,6 +10,7 @@ import PhotoGallery from "@/components/normalComponents/PhotoGallery";
 
 import ProjectsWrapper from "@/components/ProjectComponents/ProjectsWrapper";
 import { useLenis } from "@/components/providers/LenisProvider";
+import SkillSection from "@/components/SkillsComponents/SkillSection";
 import { galleryData } from "@/public/data/imgData";
 
 
@@ -258,7 +259,7 @@ export default function Home() {
           </div>
 
           <ProjectsWrapper />
-          <div className="-mt-4 w-full h-[40vh] md:h-[20vh]">
+          <div className="-mt-12 w-full h-[40vh] md:h-[20vh]">
             <svg
               className="w-full h-full"
               xmlns="http://www.w3.org/2000/svg"
@@ -385,7 +386,7 @@ export default function Home() {
       </div>
       
       <div className="min-h-screen bg-foreground">
-        <div className="h-[20vh] -mt-3  relative z-5 w-full">
+        <div className="h-[30vh] -mt-3  relative z-5 w-full">
             <svg
               viewBox="0 0 1440 160"
               preserveAspectRatio="none"
@@ -408,11 +409,9 @@ export default function Home() {
               />
             </svg>
           </div>
-          <div >
+          
+          <SkillSection/>
 
-          </div>
-
-          {/* i neeed to use on complete to remove the sticky on the img palate */}
       </div>
     </div>
   );

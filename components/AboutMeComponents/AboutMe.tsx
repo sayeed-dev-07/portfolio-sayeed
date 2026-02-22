@@ -16,14 +16,12 @@ export default function AboutMe() {
   const threeDotRef = useRef<HTMLDivElement | null>(null)
   const starContainer = useRef<HTMLDivElement | null>(null)
   const [img1, setImg1] = useState(false)
-  const [img2, setImg2] = useState(false)
+
   useEffect(() => {
     setInterval(()=>{
         setImg1(prev => !prev)
     },1000)
-    setInterval(()=>{
-        setImg2(prev => !prev)
-    },900)
+    
   }, [])
 
   useGSAP(() => {

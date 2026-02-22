@@ -35,7 +35,7 @@ const ImgSwap = ({link1, link2}:{link1: string, link2: string}) => {
         fill
         src={link2}
         unoptimized
-        className='object-contain swapImg'
+        className='object-cover swapImg'
       />
     </div>
   );

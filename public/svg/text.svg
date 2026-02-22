@@ -1,0 +1,32 @@
+<svg
+  width="720"
+  height="180"
+  viewBox="0 0 720 180"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- Background blocks (slightly imperfect rotations for handmade feel) -->
+  <rect x="10"  y="10" width="100" height="160" rx="18" fill="#F6E7C1" transform="rotate(-2 60 90)" />
+  <rect x="130" y="8"  width="100" height="160" rx="18" fill="#EAD7FF" transform="rotate(1.5 180 90)" />
+  <rect x="250" y="12" width="100" height="160" rx="18" fill="#D7F9F1" transform="rotate(-1 300 90)" />
+  <rect x="370" y="10" width="100" height="160" rx="18" fill="#FFD6D6" transform="rotate(2 420 90)" />
+  <rect x="490" y="9"  width="100" height="160" rx="18" fill="#FFF0B3" transform="rotate(-1.5 540 90)" />
+  <rect x="610" y="11" width="100" height="160" rx="18" fill="#DCEBFF" transform="rotate(1 660 90)" />
+
+  <!-- Hand-drawn style text -->
+  <g
+    font-family="Caveat, Patrick Hand, Comic Sans MS, cursive"
+    font-size="110"
+    font-weight="700"
+    fill="#111"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    style="letter-spacing:6px"
+  >
+    <text x="60"  y="95" transform="rotate(-3 60 95)">S</text>
+    <text x="180" y="95" transform="rotate(2 180 95)">K</text>
+    <text x="300" y="95" transform="rotate(-1.5 300 95)">I</text>
+    <text x="420" y="95" transform="rotate(1 420 95)">L</text>
+    <text x="540" y="95" transform="rotate(-2 540 95)">L</text>
+    <text x="660" y="95" transform="rotate(2.5 660 95)">S</text>
+  </g>
+</svg>
