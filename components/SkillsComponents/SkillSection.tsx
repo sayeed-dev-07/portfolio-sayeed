@@ -194,6 +194,9 @@ const SkillSection = () => {
                 </div>
 
             </div>
+            <div className='overflow-visible w-full flex items-center justify-center'>
+                <ImgSwap link1='/svg/1.svg' link2='/svg/2.svg'/>
+            </div>
         </section>
     );
 };

@@ -28,14 +28,14 @@ const ImgSwap = ({link1, link2}:{link1: string, link2: string}) => {
         alt='img'
         fill
         src={link1}
-        className='object-cover swapImg'
+        className='object-contain swapImg'
       />
       <Image
         alt='img'
         fill
         src={link2}
         unoptimized
-        className='object-cover swapImg'
+        className='object-contain swapImg'
       />
     </div>
   );

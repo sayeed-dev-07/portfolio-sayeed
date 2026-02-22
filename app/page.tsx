@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 'use client'
 import AboutMe from "@/components/AboutMeComponents/AboutMe";
+import ContactSection from "@/components/contactSection.tsx/ContactSection";
 import Navbar from "@/components/heroComponents/navbar";
 import ProjectButton from "@/components/heroComponents/ProjectButton";
 import BounceSvg from "@/components/normalComponents/BounceSvg";
@@ -409,10 +410,9 @@ export default function Home() {
               />
             </svg>
           </div>
-          
           <SkillSection/>
-
       </div>
+      <ContactSection/>
     </div>
   );
 }

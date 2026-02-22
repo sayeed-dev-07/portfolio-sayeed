@@ -94,7 +94,7 @@ export default function ScrollSection() {
     return (
         <section ref={container} className="flex projectSection -mt-3 bg-[#85a98d] md:flex-row flex-col min-h-screen w-full relative z-5 overflow-y-visible">
             <div className='absolute z-100 left-[25%] sm:left-[35%] md:left-5 md:-bottom-7 -bottom-21'>
-                    <ImgSwap link1='/svg/1.svg' link2='/svg/2.svg'/>
+                    <ImgSwap link1='/svg/gojo1.svg' link2='/svg/gojo2.svg'/>
             </div>
             {/* LEFT SIDE: Pinned Navigation */}
             <div ref={leftRef} className="bg-[#84a98c] md:w-1/3 w-full md:h-screen h-fit py-4 md:py-0 flex flex-col justify-start md:justify-center lg:px-10 px-3 relative z-50  gap-y-6">
