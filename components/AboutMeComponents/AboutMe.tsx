@@ -79,7 +79,7 @@ export default function AboutMe() {
             <TextColorReveal text='Sayeed Shorif'/>
           </div>
         </div>
-        <div className='font-outfit text-2xl'>
+        <div className='font-outfit sm:text-2xl text-xl'>
           <TextColorReveal text='I’m an enthusiastic front-end developer driven by curiosity, constant learning, and the excitement of solving complex problems. I approach development like visual storytelling — blending motion, structure, and emotion into interfaces that feel alive rather than static. I enjoy breaking challenges into smaller pieces, experimenting beyond the ordinary, and turning ideas into thoughtful, interactive experiences that reflect both creativity and technical precision.' />
         </div>
       </div>

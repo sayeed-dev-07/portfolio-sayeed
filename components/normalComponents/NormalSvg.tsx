@@ -17,7 +17,8 @@ const RollingSvg = () => {
         repeat: -1, 
         defaults: { ease: 'power2.inOut' } ,
         repeatDelay:0.5,
-        delay:3.5
+        delay:3.5,
+        force3D: true,
       });
 
       // --- STEP 1: ROLL RIGHT ---
@@ -48,7 +49,7 @@ const RollingSvg = () => {
   );
 
   return (
-    <div ref={containerRef} className="">
+    <div ref={containerRef} className="pointer-events-none">
       <svg
         ref={svgRef}
         viewBox="0 0 600 600"
