@@ -34,7 +34,8 @@ const skillsData = {
     "Accessibility Basics",
     "SEO Fundamentals",
     "TanStack Query",
-    "Zustand"
+    "Zustand",
+    "Restful API",
   ]
 };
 

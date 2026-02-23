@@ -23,6 +23,7 @@ const SkillSection = () => {
 
     const skillContainer = useRef<HTMLDivElement | null>(null);
     const imgSwapRef = useRef<HTMLDivElement | null>(null);
+    const imgSwapRef2 = useRef<HTMLDivElement | null>(null);
     const titleRef = useRef<HTMLDivElement | null>(null);
     const listWrapRef = useRef<HTMLDivElement | null>(null);
     const listRef = useRef<HTMLDivElement | null>(null);
@@ -37,10 +38,20 @@ const SkillSection = () => {
             gsap.to(imgSwapRef.current, {
                 opacity: 1,
                 y: 0,
+                scale:1,
                 duration: 1.5,
                 ease: 'expo.out',
                 scrollTrigger: {
                     trigger: imgSwapRef.current,
+                    start: 'top 85%'
+                }
+            });
+            gsap.to(imgSwapRef2.current, {
+                scale:1,
+                duration: 1.5,
+                ease: 'expo.out',
+                scrollTrigger: {
+                    trigger: imgSwapRef2.current,
                     start: 'top 85%'
                 }
             });
@@ -133,7 +144,7 @@ const SkillSection = () => {
 
             <div
                 ref={imgSwapRef}
-                className="absolute sm:right-[10%] left-[28%] sm:left-auto -top-[20%] opacity-0 translate-y-10"
+                className="absolute scale-10 sm:right-[10%] left-[28%] sm:left-auto -top-[20%] opacity-0 translate-y-10"
             >
                 <ImgSwap link1="/svg/tech1.svg" link2="/svg/tech2.svg" />
             </div>
@@ -194,7 +205,7 @@ const SkillSection = () => {
                 </div>
 
             </div>
-            <div className='overflow-visible w-full flex items-center justify-center'>
+            <div ref={imgSwapRef2} className='overflow-visible w-full flex items-center justify-center scale-10'>
                 <ImgSwap link1='/svg/1.svg' link2='/svg/2.svg'/>
             </div>
         </section>
