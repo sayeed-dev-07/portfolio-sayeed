@@ -43,7 +43,7 @@ const SkillSection = () => {
                 ease: 'expo.out',
                 scrollTrigger: {
                     trigger: imgSwapRef.current,
-                    start: 'top 85%'
+                    start: 'clamp(top 90%)'
                 }
             });
             gsap.to(imgSwapRef2.current, {
@@ -52,7 +52,7 @@ const SkillSection = () => {
                 ease: 'expo.out',
                 scrollTrigger: {
                     trigger: imgSwapRef2.current,
-                    start: 'top 85%'
+                    start: 'clamp(top 90%)'
                 }
             });
 

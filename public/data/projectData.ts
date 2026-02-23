@@ -19,6 +19,7 @@ export const projectData: ProjectType[] = [
       'TanStack Query',
       'Lenis',
       'shadcn/ui',
+      'TypeScript',
     ],
     live: 'https://anime-vault-nextjs-ts.vercel.app/',
     code: 'https://github.com/sayeed-dev-07/anime-vault-nextjs-ts.git',
@@ -27,7 +28,7 @@ export const projectData: ProjectType[] = [
   {
     id: 2,
     name: 'Spylt',
-    tech: ['React', 'Next.js', 'GSAP', 'Lenis'],
+    tech: ['React', 'Next.js', 'GSAP', 'Lenis', 'TypeScript'],
     live: 'https://spylt-navy.vercel.app/',
     code: 'https://github.com/sayeed-dev-07/spylt.git',
     img: '/img/spylt.PNG',
@@ -35,7 +36,7 @@ export const projectData: ProjectType[] = [
   {
     id: 3,
     name: 'No Good Co.',
-    tech: ['React', 'Next.js', 'GSAP'],
+    tech: ['React', 'Next.js', 'GSAP', 'TypeScript'],
     live: 'https://no-good-co.vercel.app/',
     code: 'https://github.com/sayeed-dev-07/no-good-co.git',
     img: '/img/nogood.PNG',
@@ -43,7 +44,7 @@ export const projectData: ProjectType[] = [
   {
     id: 4,
     name: 'Sheltr',
-    tech: ['React', 'Next.js', 'GSAP'],
+    tech: ['React', 'Next.js', 'GSAP', 'TypeScript'],
     live: 'https://sheltr-cyan.vercel.app/',
     code: 'https://github.com/sayeed-dev-07/sheltr.git',
     img: '/img/sheltr.PNG',

@@ -17,7 +17,7 @@ const Sticker = ({link}:{link: string}) => {
                 ease: 'expo.out',
                 scrollTrigger: {
                     trigger: stickerRef.current,
-                    start: 'top 85%'
+                    start: 'clamp(top 90%)'
                 }
             });
     }, {scope: stickerRef})

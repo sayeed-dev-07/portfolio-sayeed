@@ -202,12 +202,12 @@ export default function Home() {
 
       <Navbar navOpen={heroDone} />
 
-      <div id="hero" className="h-screen overflow-hidden text-background font-main uppercase flex items-center justify-center relative flex-col sm:px-4 px-2">
+      <div id="hero" className="h-screen overflow-hidden text-background font-futura uppercase flex items-center justify-center relative flex-col sm:px-4 px-2">
         <div className="sm:w-fit w-full flex gap-y-1.5 sm:gap-y-0 flex-col items-start ">
 
 
 
-          <p ref={text1} className="opacity-0 font-semibold text-2xl sm:text-3xl md:text-4xl">
+          <p ref={text1} className="opacity-0 font-semibold font-outfit text-2xl sm:text-3xl md:text-4xl">
             Hi i am
           </p>
 
@@ -219,7 +219,7 @@ export default function Home() {
 
 
 
-          <p ref={text2} className="opacity-0 font-social text-sm text-start font-semibold lowercase ">
+          <p ref={text2} className="opacity-0 font-outfit text-sm text-start font-semibold lowercase ">
             A Front End Focused Web developer and Designer
           </p>
 

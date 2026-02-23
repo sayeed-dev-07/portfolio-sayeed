@@ -29,7 +29,7 @@ export default function AboutMe() {
     gsap.to(imgContainerRef.current, {
       scrollTrigger: {
         trigger: imgContainerRef.current,
-        start: 'clamp(top 85%)',
+        start: 'clamp(top 90%)',
 
       },
       duration: 0.5,
@@ -71,15 +71,15 @@ export default function AboutMe() {
         </div>
       </div>
       <div className='text-start relative z-2 flex md:w-[400px] lg:w-[500px] h-full  flex-col gap-y-5 flex-wrap gap-x-4 text-[#eeeeeec1]'>
-        <div className='flex flex-col  -gap-y-2 tracking-wide sm:font-futura text-4xl sm:text-5xl font-semibold'> 
-          <div className='font-social  text-2xl'>
+        <div className='flex flex-col  -gap-y-2 tracking-wide sm:font-futura text-4xl sm:text-5xl font-main font-semibold'> 
+          <div className='font-main  text-2xl'>
             <TextColorReveal text='I&apos;m'/>
           </div>
-          <div className='uppercase '>
+          <div className='uppercase font-main'>
             <TextColorReveal text='Sayeed Shorif'/>
           </div>
         </div>
-        <div className='font-outfit sm:text-2xl text-xl'>
+        <div className=' sm:text-2xl text-xl'>
           <TextColorReveal text='I’m an enthusiastic front-end developer driven by curiosity, constant learning, and the excitement of solving complex problems. I approach development like visual storytelling — blending motion, structure, and emotion into interfaces that feel alive rather than static. I enjoy breaking challenges into smaller pieces, experimenting beyond the ordinary, and turning ideas into thoughtful, interactive experiences that reflect both creativity and technical precision.' />
         </div>
       </div>

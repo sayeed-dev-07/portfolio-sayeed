@@ -99,7 +99,7 @@ const ProjectCard = ({ data, func }: { data: dataProp, func: (index: number) => 
                 </div>
                     <div className='w-[95%] py-[5%] md:py-[2%] mx-auto flex flex-col md:gap-y-7 gap-y-4'>
                         <div className='flex  items-center justify-between gap-4'>
-                        <h2 className='text-3xl md:text-4xl font-main font-bold text-gray-900 tracking-tight'>
+                        <h2 className='text-3xl md:text-4xl font-futura font-bold text-gray-900 tracking-tight'>
                             {data.name}
                         </h2>
 

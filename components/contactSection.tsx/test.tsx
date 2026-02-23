@@ -16,53 +16,77 @@ const ContactPage = () => {
 
     // --- Hover Handlers for "SOCIAL NETWORKS" ---
     const handleEnter1 = () => {
+        gsap.killTweensOf([arrow1ShaftRef.current, arrow1HeadRef.current]);
+
         gsap.to(arrow1ShaftRef.current, {
             scale: 1.5,
             strokeWidth: 3,
             transformOrigin: "0% 0%", // top-left
             duration: 0.5,
             ease: "back.out(1.5)",
+            overwrite: "auto",
         });
         gsap.to(arrow1HeadRef.current, {
             x: 8,
             y: 8,
             duration: 0.5,
             ease: "back.out(1.5)",
+            overwrite: "auto",
         });
     };
 
     const handleLeave1 = () => {
+        gsap.killTweensOf([arrow1ShaftRef.current, arrow1HeadRef.current]);
+
         gsap.to([arrow1ShaftRef.current, arrow1HeadRef.current], {
             scale: 1,
             strokeWidth: 1.5, // back to default
             x: 0,
             y: 0,
-            duration: 0.4,
+            duration: 0.3,
             ease: "power2.out",
+            overwrite: "auto",
+            onComplete: () => {
+                gsap.set([arrow1ShaftRef.current, arrow1HeadRef.current], {
+                    clearProps: "transform,strokeWidth",
+                });
+            },
         });
     };
 
     // --- Hover Handlers for "LET'S TALK" ---
     const handleEnter2 = () => {
+        gsap.killTweensOf([arrow2ShaftRef.current, arrow2HeadRef.current]);
+
         gsap.to(arrow2ShaftRef.current, {
             scaleY: 1.5,
             transformOrigin: "bottom center",
             duration: 0.5,
             ease: "back.out(1.5)",
+            overwrite: "auto",
         });
         gsap.to(arrow2HeadRef.current, {
             y: -10,
             duration: 0.5,
             ease: "back.out(1.5)",
+            overwrite: "auto",
         });
     };
 
     const handleLeave2 = () => {
+        gsap.killTweensOf([arrow2ShaftRef.current, arrow2HeadRef.current]);
+
         gsap.to([arrow2ShaftRef.current, arrow2HeadRef.current], {
             scaleY: 1,
             y: 0,
-            duration: 0.4,
+            duration: 0.3,
             ease: "power2.out",
+            overwrite: "auto",
+            onComplete: () => {
+                gsap.set([arrow2ShaftRef.current, arrow2HeadRef.current], {
+                    clearProps: "transform",
+                });
+            },
         });
     };
 

@@ -18,7 +18,7 @@ const Cloud = ({ src, alt = 'cloudImg' }: { src: string, alt?: string }) => {
                 ease: 'expo.out',
                 scrollTrigger: {
                     trigger: cloudRef.current,
-                    start: 'top 85%'
+                    start: 'clamp(top 90%)'
                 }
             });
     }, {scope: cloudRef})

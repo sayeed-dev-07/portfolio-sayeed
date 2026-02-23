@@ -45,7 +45,7 @@ export default function ScrollSection() {
                 ease: 'power2.out',
                 scrollTrigger: {
                     trigger: clipPathRef.current,
-                    start: 'top 40%',
+                    start: 'clamp(top 40%)',
                 }
             }
         )
@@ -99,7 +99,7 @@ export default function ScrollSection() {
             {/* LEFT SIDE: Pinned Navigation */}
             <div ref={leftRef} className="bg-[#84a98c] md:w-1/3 w-full md:h-screen h-fit py-4 md:py-0 flex flex-col justify-start md:justify-center lg:px-10 px-3 relative z-50  gap-y-6">
                 <div className='w-fit'>
-                    <p className='uppercase font-main text-5xl'>Projects</p>
+                    <p className='uppercase font-futura text-5xl'>Projects</p>
                     <div className='w-full overflow-hidden'>
                         <svg ref={clipPathRef} xmlns="http://www.w3.org/2000/svg" className='-translate-x-full' viewBox="1144.38 1591.96 3161 190.1">
                             <path d="M1163 1774 c-23 -10 -15 -53 10 -58 12 -3 252 -8 532 -11 281 -3 607 -10 725 -15 118 -5 400 -12 625 -15 537 -7 774 -21 1085 -66 115 -17 141 -16 154 3 22 35 -10 45 -194 63 -96 8 -215 20 -265 25 -49 5 -218 11 -375 14 -157 4 -325 8 -375 10 -49 3 -166 5 -260 7 -93 1 -323 8 -510 15 -642 26 -1130 37 -1152 28z" fill="#ededed" />
