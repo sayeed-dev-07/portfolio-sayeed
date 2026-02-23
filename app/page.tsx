@@ -2,6 +2,8 @@
 'use client'
 import AboutMe from "@/components/AboutMeComponents/AboutMe";
 import ContactSection from "@/components/contactSection.tsx/ContactSection";
+import Sticker from "@/components/contactSection.tsx/Sticker";
+import ContactPage from "@/components/contactSection.tsx/test";
 import Navbar from "@/components/heroComponents/navbar";
 import ProjectButton from "@/components/heroComponents/ProjectButton";
 import BounceSvg from "@/components/normalComponents/BounceSvg";
@@ -20,9 +22,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 
-
-
 import { useRef, useState } from "react";
+
 
 gsap.registerPlugin(useGSAP, SplitText, ScrollTrigger)
 
@@ -43,7 +44,7 @@ export default function Home() {
   const [aboutLogo, setAboutLogo] = useState(false)
   const [sticky, setSticky] = useState(true)
 
-  
+
   useGSAP(() => {
     ScrollTrigger.create({
       trigger: dividerRef.current,
@@ -90,8 +91,7 @@ export default function Home() {
     // 2. Initial state
     gsap.set(letters, { opacity: 0, transformOrigin: "50% 50%" });
 
-    // 3. Multi-step Assembly
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    
     letters.forEach((letter: any, i) => {
       const randomX = (Math.random() - 0.5) * 600;
       const randomY = (Math.random() - 0.5) * 600;
@@ -277,7 +277,7 @@ export default function Home() {
 
         </div>
       </div>
-      <div ref={paralaxRef} className={`${sticky ? ' sticky top-0 left-0': 'relative'} gallery  z-2 w-full`}>
+      <div ref={paralaxRef} className={`${sticky ? ' sticky top-0 left-0' : 'relative'} gallery  z-2 w-full`}>
         <PhotoGallery images={galleryData} />
       </div>
 
@@ -381,20 +381,20 @@ export default function Home() {
             </div>
             <AboutMe />
           </div>
-          
+
         </div>
 
       </div>
-      
+
       <div className="min-h-screen bg-foreground">
         <div className="h-[30vh] -mt-3  relative z-5 w-full">
-            <svg
-              viewBox="0 0 1440 160"
-              preserveAspectRatio="none"
-              className="w-full h-full"
-            >
-              <path
-                d="
+          <svg
+            viewBox="0 0 1440 160"
+            preserveAspectRatio="none"
+            className="w-full h-full"
+          >
+            <path
+              d="
       M0,0
       L80,20 L140,-10 L200,40 L260,-20
       L320,50 L380,10 L440,60 L500,-10
@@ -406,16 +406,30 @@ export default function Home() {
       L0,0
       Z
     "
-                fill="#e2d7a8"
-              />
-            </svg>
-          </div>
-          <SkillSection/>
+              fill="#e2d7a8"
+            />
+          </svg>
+        </div>
+        <SkillSection />
       </div>
-      <ContactSection/>
-      {/* <div className="h-[40vh]">
-
-      </div> */}
+      <ContactSection />
+      <div className="h-screen text-background -mt-[1%] overflow-hidden bg-[#e3d7a9] sm:px-6 px-2  relative z-30">
+          {/* stickers  */}
+          <div>
+            <div className={`absolute top-[20%] right-[2%] ${aboutLogo ? 'rotate-10' : 'rotate-0'}`}>
+            <Sticker link="/img/naruto.webp"/>
+          </div>
+          <div className={`absolute top-[40%] left-[25%] ${aboutLogo ? 'rotate-10' : 'rotate-0'}`}>
+            <Sticker link="/img/speaker.webp"/>
+          </div>
+          
+          <div className={`absolute right-[10%] bottom-[20%] ${aboutLogo ? 'rotate-10' : 'rotate-0'}`}>
+            <Sticker link="/img/mail.webp"/>
+          </div>
+          </div>
+          {/* main page  */}
+          <ContactPage/>
+      </div>
     </div>
   );
 }

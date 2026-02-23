@@ -15,6 +15,8 @@ const ContactSection = () => {
 
     useGSAP(() => {
 
+        
+
         gsap.to(cloud1Ref.current, {
             x: '20%',
             duration: 1.2,
@@ -32,8 +34,8 @@ const ContactSection = () => {
             force3D: true
         })
         gsap.to(shipRef.current, {
-            y: '-15%',
-            duration: 1.2,
+            y: '-25%',
+            duration: 1.6,
             repeat: -1,
             ease: 'none',
             yoyo: true,
@@ -43,7 +45,7 @@ const ContactSection = () => {
     }, { scope: contactSectionRef })
 
     return (
-        <div ref={contactSectionRef} className='h-auto  relative z-10'>
+        <div ref={contactSectionRef} className=' relative z-10'>
 
             <div>
                 {/* cloud section  */}
@@ -67,7 +69,7 @@ const ContactSection = () => {
                     </div>
                 </div>
                 {/* layer section  */}
-                <div id='bgImgLayer' className='h-[20vh] sm:h-[30vh]  xl:h-[40vh] w-full relative  '>
+                <div id='bgImgLayer' className='h-[20vh] sm:h-[30vh]  xl:h-[40vh]  w-full relative  '>
 
                     {/* Layer 3: Background (Clouds/Back Hills) */}
                     <div className='absolute inset-0 z-10'>
@@ -90,7 +92,7 @@ const ContactSection = () => {
                             className='object-contain object-bottom'
                         />
                     </div>
-                    <div ref={shipRef} className='absolute  -translate-y-[25%] md:w-75 w-[200px] aspect-square inset-0 z-25'>
+                    <div ref={shipRef} className='absolute  xl:translate-y-[0%] -translate-y-[15%]  w-[200px] sm:w-[250px] aspect-square inset-0 z-25'>
                         <Image
                             src={'/img/merry.webp'}
                             alt='layer2'
