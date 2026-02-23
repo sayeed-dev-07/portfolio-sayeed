@@ -4,7 +4,12 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import React, { useRef } from 'react';
 
-const ProjectButton = ({ text }: { text: string }) => {
+type Props = {
+  text: string
+  onClick?: () => void
+}
+
+const ProjectButton = ({ text, onClick }: Props) => {
   const container = useRef<HTMLDivElement | null>(null);
   const buttonBg = useRef<HTMLDivElement | null>(null);
   const primaryText = useRef<HTMLDivElement | null>(null);
@@ -56,6 +61,7 @@ const ProjectButton = ({ text }: { text: string }) => {
   return (
     <div
       ref={container}
+      onClick={onClick}
       onMouseEnter={hoverIn}
       onMouseLeave={hoverOut}
       className="group relative inline-block cursor-pointer overflow-hidden rounded-lg border border-neutral-800 bg-transparent px-6 py-2.5 font-social font-semibold text-neutral-800"

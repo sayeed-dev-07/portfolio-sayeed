@@ -16,10 +16,12 @@ gsap.registerPlugin(MorphSVGPlugin, DrawSVGPlugin)
 const Navbar = ({ navOpen }: { navOpen: boolean }) => {
     const [hover, setHover] = useState(false)
     const [navbarOpen, setNavbarOpen] = useState(false)
+    const [navHidden, setNavHidden] = useState(false)
     const navItemsRef = useRef<HTMLDivElement | null>(null)
     const timeLine = useRef<GSAPTimeline | null>(null)
     const svgRef = useRef(null)
     const gojoSvg = useRef(null)
+    const lastScrollY = useRef(0)
 
 
     useGSAP(() => {
@@ -47,6 +49,51 @@ const Navbar = ({ navOpen }: { navOpen: boolean }) => {
         if (!timeLine.current) return
         navbarOpen ? timeLine.current.play() : timeLine.current.reverse()
     }, [navbarOpen])
+
+    const scrollToId = (id: string) => {
+        const el = document.getElementById(id)
+        if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+    }
+
+    const handleNavClick = (id: string) => {
+        setNavbarOpen(false)
+        setTimeout(() => scrollToId(id), 300)
+    }
+
+    // Hide navbar on scroll down, show on scroll up (disabled while menu is open)
+    useEffect(() => {
+        const handleScroll = () => {
+            if (!navOpen) {
+                setNavHidden(false)
+                return
+            }
+
+            const currentY = window.scrollY
+
+            // keep navbar visible while overlay menu is open
+            if (navbarOpen) {
+                setNavHidden(false)
+                lastScrollY.current = currentY
+                return
+            }
+
+            const delta = currentY - lastScrollY.current
+            const threshold = 4
+
+            if (delta > threshold && currentY > 80) {
+                setNavHidden(true)
+            } else if (delta < -threshold) {
+                setNavHidden(false)
+            }
+
+            lastScrollY.current = currentY
+        }
+
+        window.addEventListener('scroll', handleScroll, { passive: true })
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [navbarOpen, navOpen])
 
     useGSAP(() => {
 
@@ -131,15 +178,15 @@ const Navbar = ({ navOpen }: { navOpen: boolean }) => {
     }, [hover])
 
     return (
-        <div className='fixed pointer-events-none navbar opacity-0 -top-40 left-0 w-full z-999'>
+        <div className={`fixed pointer-events-none navbar opacity-0 -top-40 left-0 w-full z-999 transition-transform duration-300 ${navHidden ? '-translate-y-full' : 'translate-y-0'}`}>
             <div className='sm:px-8 md:px-16 px-2 py-0.5 flex items-center justify-between'>
-                <div className='cursor-pointer pointer-events-auto relative z-9999'>
+                <div onClick={() => handleNavClick('hero')} className='cursor-pointer pointer-events-auto relative z-9999'>
                     <svg ref={svgRef}
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 26.65999984741211 155.66000366210938 34.56999969482422"
 
                         data-asc="1.220703125"
-                        className='overflow-visible w-[80px] md:w-[130px] aspect-square'
+                        className='overflow-visible w-[100px] md:w-[130px] aspect-square'
                         width={100}
 
                     >
@@ -207,23 +254,23 @@ const Navbar = ({ navOpen }: { navOpen: boolean }) => {
                             </svg>
                         </div>
                         <div className='grid grid-cols-2 gap-x-14 gap-y-2 md:gap-y-6 flex-wrap uppercase font-futura text-3xl md:text-4xl lg:text-5xl xl:text-6xl'>
-                            <div onMouseLeave={() => setHover(false)} onMouseEnter={() => setHover(true)} onClick={() => setNavbarOpen((prev) => !prev)} className='flex items-center justify-center flex-col w-fit cursor-pointer'>
+                            <div onMouseLeave={() => setHover(false)} onMouseEnter={() => setHover(true)} onClick={() => handleNavClick('hero')} className='flex items-center justify-center flex-col w-fit cursor-pointer'>
                                 <TextRevealAnimation navOpen={navbarOpen} delayIndex={3} text='hero' />
                                 <TextRevealAnimation navOpen={navbarOpen} delayIndex={4} style='navitems-span' text='to the top page' />
                             </div>
-                            <div onMouseLeave={() => setHover(false)} onMouseEnter={() => setHover(true)} onClick={() => setNavbarOpen((prev) => !prev)} className='flex items-center justify-center flex-col w-fit cursor-pointer'>
+                            <div onMouseLeave={() => setHover(false)} onMouseEnter={() => setHover(true)} onClick={() => handleNavClick('AboutSection')} className='flex items-center justify-center flex-col w-fit cursor-pointer'>
                                 <TextRevealAnimation navOpen={navbarOpen} delayIndex={5} text='about' />
                                 <TextRevealAnimation style='navitems-span' navOpen={navbarOpen} delayIndex={6} text='about me' />
                             </div>
-                            <div onMouseLeave={() => setHover(false)} onMouseEnter={() => setHover(true)} onClick={() => setNavbarOpen((prev) => !prev)} className='flex items-center justify-center flex-col w-fit cursor-pointer'>
+                            <div onMouseLeave={() => setHover(false)} onMouseEnter={() => setHover(true)} onClick={() => handleNavClick('ProjectSection')} className='flex items-center justify-center flex-col w-fit cursor-pointer'>
                                 <TextRevealAnimation navOpen={navbarOpen} delayIndex={7} text='projects' />
                                 <TextRevealAnimation style='navitems-span' navOpen={navbarOpen} delayIndex={8} text='see all projects' />
                             </div>
-                            <div onMouseLeave={() => setHover(false)} onMouseEnter={() => setHover(true)} onClick={() => setNavbarOpen((prev) => !prev)} className='flex items-center justify-center flex-col w-fit cursor-pointer'>
+                            <div onMouseLeave={() => setHover(false)} onMouseEnter={() => setHover(true)} onClick={() => handleNavClick('SkillsSection')} className='flex items-center justify-center flex-col w-fit cursor-pointer'>
                                 <TextRevealAnimation navOpen={navbarOpen} delayIndex={9} text='skills' />
                                 <TextRevealAnimation style='navitems-span' navOpen={navbarOpen} delayIndex={10} text='tech i use or know' />
                             </div>
-                            <div onMouseLeave={() => setHover(false)} onMouseEnter={() => setHover(true)} onClick={() => setNavbarOpen((prev) => !prev)} className='flex items-center justify-center flex-col w-fit cursor-pointer'>
+                            <div onMouseLeave={() => setHover(false)} onMouseEnter={() => setHover(true)} onClick={() => handleNavClick('ContactSection')} className='flex items-center justify-center flex-col w-fit cursor-pointer'>
                                 <TextRevealAnimation navOpen={navbarOpen} delayIndex={11} text='contact' />
                                 <TextRevealAnimation style='navitems-span' navOpen={navbarOpen} delayIndex={12} text='contact me' />
                             </div>

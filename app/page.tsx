@@ -92,6 +92,7 @@ export default function Home() {
     gsap.set(letters, { opacity: 0, transformOrigin: "50% 50%" });
 
     
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     letters.forEach((letter: any, i) => {
       const randomX = (Math.random() - 0.5) * 600;
       const randomY = (Math.random() - 0.5) * 600;
@@ -201,7 +202,7 @@ export default function Home() {
 
       <Navbar navOpen={heroDone} />
 
-      <div className="h-screen overflow-hidden text-background font-main uppercase flex items-center justify-center relative flex-col sm:px-4 px-2">
+      <div id="hero" className="h-screen overflow-hidden text-background font-main uppercase flex items-center justify-center relative flex-col sm:px-4 px-2">
         <div className="sm:w-fit w-full flex gap-y-1.5 sm:gap-y-0 flex-col items-start ">
 
 
@@ -224,7 +225,10 @@ export default function Home() {
 
 
           <div ref={projectButtonnRef} className="mt-6 opacity-0 translate-y-full relative z-50 " >
-            <ProjectButton text="Projects" />
+            <ProjectButton text="Projects" onClick={() => {
+              const el = document.getElementById('ProjectSection')
+              el?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            }} />
           </div>
         </div>
 
@@ -309,7 +313,7 @@ export default function Home() {
         </div>
 
         {/* rest of the page  */}
-        <div className="bg-transparent z-6 relative">
+        <div id="AboutSection" className="bg-transparent z-6 relative">
           <div className="absolute -rotate-25  top-[1%]">
 
             <svg xmlns="http://www.w3.org/2000/svg"
@@ -387,7 +391,7 @@ export default function Home() {
       </div>
 
       <div className="min-h-screen bg-foreground">
-        <div className="h-[30vh] -mt-3  relative z-5 w-full">
+        <div id="SkillsSection" className="h-[30vh] -mt-3  relative z-5 w-full">
           <svg
             viewBox="0 0 1440 160"
             preserveAspectRatio="none"
@@ -412,7 +416,9 @@ export default function Home() {
         </div>
         <SkillSection />
       </div>
-      <ContactSection />
+      <div id="ContactSection">
+        <ContactSection />
+      </div>
       <div className="h-screen text-background -mt-[1%] overflow-hidden bg-[#e3d7a9] sm:px-6 px-2  relative z-30">
           {/* stickers  */}
           <div>
