@@ -146,7 +146,7 @@ const SkillSection = () => {
                     className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-black/10 pb-8 opacity-0 translate-y-10"
                 >
                     <div className="flex flex-col gap-2">
-                        <span className="text-xs uppercase tracking-[0.3em] text-black/40 font-medium">Expertise</span>
+                        <span className="text-xs uppercase tracking-[0.3em] text-black/80 font-medium font-social ">Expertise</span>
                         <h2 className="font-main text-5xl sm:text-7xl font-light tracking-tight">Skills.</h2>
                     </div>
 
@@ -158,9 +158,9 @@ const SkillSection = () => {
 
                                     data-active={activeCategory === cat.key}
                                     onClick={() => handleCategoryChange(cat.key)}
-                                    className={`text-xs uppercase tracking-[0.15em] transition-all cursor-pointer duration-500 pb-1 ${activeCategory === cat.key
+                                    className={`text-xs uppercase tracking-[0.15em] font-social transition-all cursor-pointer duration-500 pb-1 ${activeCategory === cat.key
                                             ? 'text-black '
-                                            : 'text-black/30 hover:text-black/70 '
+                                            : 'text-black/60 hover:text-black/70 '
                                         }`}
                                 >
                                     {cat.label}
