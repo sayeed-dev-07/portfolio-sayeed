@@ -66,13 +66,13 @@ const ProjectCard = ({ data, func }: { data: dataProp, func: (index: number) => 
                 onMouseEnter={hoverIn}
                 onMouseLeave={hoverOut}
                 ref={cardRef}
-                className={`w-[90%] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sm:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] md:w-[80%] lg:w-[70%] max-w-4xl relative shrink-0 rounded-3xl`}
+                className={`w-[90%]  md:w-[80%] lg:w-[70%] max-w-4xl relative shrink-0 rounded-3xl`}
             >
                 {/* --- HAND-DRAWN BORDER LAYER --- */}
                 {/* We use an absolute div so the filter doesn't distort the images/text inside */}
                 <div 
-                    className="absolute inset-0 border-[3px] border-black rounded-3xl pointer-events-none z-20"
-                    style={{ filter: "url(#sketchy-border)" }}
+                    className="absolute inset-0 border-[2px] border-black rounded-3xl pointer-events-none z-20"
+                    
                 />
 
                 {/* Card Content */}
@@ -154,15 +154,8 @@ const ProjectCard = ({ data, func }: { data: dataProp, func: (index: number) => 
                 </div>
             </div>
 
-            {/* --- SVG FILTER DEFINITION --- */}
-            <svg className="w-0 h-0 absolute pointer-events-none">
-                <defs>
-                    <filter id="sketchy-border">
-                        <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="noise" />
-                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
-                    </filter>
-                </defs>
-            </svg>
+            
+            
         </div>
     );
 };

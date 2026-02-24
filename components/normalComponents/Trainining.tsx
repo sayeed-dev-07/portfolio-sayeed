@@ -52,64 +52,78 @@ export default function EducationSection() {
     const dotsRef = useRef<(HTMLDivElement | null)[]>([]);
 
     useGSAP(() => {
-        // 1. Draw the vertical line as you scroll
+        // 1. Draw the vertical line (Lightweight, applies to all devices)
         gsap.fromTo(
             lineRef.current,
             { scaleY: 0 },
             {
                 scaleY: 1,
                 ease: "none",
-                force3D: true,
+                force3D: true, // Forces GPU acceleration
                 scrollTrigger: {
                     trigger: sectionRef.current,
-                    start: "clamp(top 90%)", // Line starts drawing when section top hits center of viewport
-                    end: "clamp(bottom 90%)", // Finishes drawing at bottom
+                    start: "clamp(top 90%)",
+                    end: "clamp(bottom 90%)",
                     scrub: true,
                 },
             }
         );
 
-        // 2. Animate Dots and Cards in sync with the line
-        cardsRef.current.forEach((card, index) => {
-            const dot = dotsRef.current[index];
+        // 2. Responsive Animations using matchMedia
+        const mm = gsap.matchMedia();
 
-            // Pop the dot in and reverse on scroll back
-            gsap.fromTo(
-                dot,
-                { scale: 0 },
-                {
-                    scale: 1,
-                    duration: 0.4,
-                    ease: "back.out(2)",
-                    force3D: true,
-                    scrollTrigger: {
-                        trigger: card,
-                        start: "clamp(top 90%)",
+        mm.add(
+            {
+                // Define our breakpoints
+                isMobile: "(max-width: 767px)",
+                isDesktop: "(min-width: 768px)",
+            },
+            (context) => {
+                const { isMobile } = context.conditions as { isMobile: boolean, isDesktop: boolean };
 
-                        toggleActions: "play none none reverse",
-                    },
-                }
-            );
+                cardsRef.current.forEach((card, index) => {
+                    const dot = dotsRef.current[index];
 
-            // Scale the card in and reverse on scroll back
-            gsap.fromTo(
-                card,
-                { scale: 0, opacity: 0 },
-                {
-                    scale: 1,
-                    opacity: 1,
-                    duration: 0.5,
-                    ease: "power2.out",
-                    force3D: true,
-                    scrollTrigger: {
-                        trigger: card,
-                        start: "clamp(top 90%)",
-                        // play on enter, reverse on leave back
-                        toggleActions: "play none none reverse",
-                    },
-                }
-            );
-        });
+                    // Dot Animation: Bounces in (same for both)
+                    gsap.fromTo(
+                        dot,
+                        { scale: 0 },
+                        {
+                            scale: 1,
+                            duration: 0.4,
+                            ease: "back.out(2)",
+                            force3D: true,
+                            scrollTrigger: {
+                                trigger: card,
+                                start: isMobile ? "top 85%" : "clamp(top 90%)",
+                                toggleActions: "play none none reverse",
+                            },
+                        }
+                    );
+
+                    // Card Animation: Slide up for Mobile, Scale for Desktop
+                    gsap.fromTo(
+                        card,
+                        isMobile 
+                            ? { y: 40, opacity: 0 } // Mobile: smoother slide up
+                            : { scale: 0.85, opacity: 0 }, // Desktop: scale up (optimized from 0 to 0.85 to reduce layout thrashing)
+                        {
+                            y: 0,
+                            scale: 1,
+                            opacity: 1,
+                            duration: 0.5,
+                            ease: "power2.out",
+                            force3D: true, // Forces hardware acceleration
+                            scrollTrigger: {
+                                trigger: card,
+                                start: isMobile ? "top 85%" : "clamp(top 90%)",
+                                toggleActions: "play none none reverse",
+                            },
+                        }
+                    );
+                });
+            }
+        );
     }, { scope: sectionRef });
 
     return (
@@ -117,13 +131,8 @@ export default function EducationSection() {
             ref={sectionRef}
             className="py-24 bg-[#e3d7a9] text-gray-900 overflow-hidden relative"
         >
-            {/* SVG Filter for Hand-drawn Border Effect */}
-            <svg className="w-0 h-0 absolute pointer-events-none">
-                <filter id="sketchy-border">
-                    <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="noise" />
-                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
-                </filter>
-            </svg>
+            {/* SVG Filter: Try to hide this on mobile if performance is still lagging */}
+            
 
             <div className="max-w-5xl mx-auto px-6">
                 <header className="text-center mb-16">
@@ -149,8 +158,10 @@ export default function EducationSection() {
                             <div
                                 key={item.id}
                                 ref={(el) => { cardsRef.current[index] = el; }}
-                                className={`relative flex items-start md:justify-between w-full mb-12 last:mb-0 ${isEven ? "md:flex-row-reverse" : "md:flex-row"
-                                    }`}
+                                className={`relative flex items-start md:justify-between w-full mb-12 last:mb-0 ${
+                                    isEven ? "md:flex-row-reverse" : "md:flex-row"
+                                }`}
+                                style={{ willChange: "transform, opacity" }} // Helps browser optimize rendering
                             >
                                 {/* Timeline Dot */}
                                 <div
@@ -163,12 +174,16 @@ export default function EducationSection() {
                                 {/* Card Container */}
                                 <div className="w-full md:w-[45%] pl-14 md:pl-0 mt-2 md:mt-0">
                                     <div className="group relative p-6 rounded-xl bg-white shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 ease-out z-10">
-
+                                        
                                         {/* Hand-Drawn Border Layer overlay */}
                                         <div
                                             className="absolute inset-0 border-[3px] border-black rounded-xl pointer-events-none"
-                                            style={{ filter: "url(#sketchy-border)" }}
+                                            // The style below applies the filter on desktop but ignores it on mobile to save performance
+                                            style={{ filter: "var(--sketchy, none)" }} 
                                         />
+                                        {/* CSS rule to add in your stylesheet for the var: 
+                                            @media (min-width: 768px) { .group .absolute { --sketchy: url(#sketchy-border); } } 
+                                        */}
 
                                         {/* Card Content */}
                                         <div className="relative z-10">
