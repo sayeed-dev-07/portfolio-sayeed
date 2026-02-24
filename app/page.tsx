@@ -10,6 +10,7 @@ import BounceSvg from "@/components/normalComponents/BounceSvg";
 import ImgSwap from "@/components/normalComponents/ImgSwap";
 import RollingSvg from "@/components/normalComponents/NormalSvg";
 import PhotoGallery from "@/components/normalComponents/PhotoGallery";
+import EducationSection from "@/components/normalComponents/Trainining";
 
 import ProjectsWrapper from "@/components/ProjectComponents/ProjectsWrapper";
 import { useLenis } from "@/components/providers/LenisProvider";
@@ -384,11 +385,16 @@ export default function Home() {
               </svg>
             </div>
             <AboutMe />
+            <EducationSection/>
           </div>
 
         </div>
 
       </div>
+
+      {/* skills section  */}
+
+      
 
       <div className="min-h-screen bg-foreground">
         <div id="SkillsSection" className="h-[30vh] -mt-3  relative z-5 w-full">

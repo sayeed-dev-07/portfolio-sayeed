@@ -13,11 +13,7 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-const myFont = localFont({
-  src: './fonts/font.woff', // Path to your file
-  variable: '--font-custom',           // Optional: CSS variable name
-  display: 'swap',
-})
+
 const futura = localFont({
   src: './fonts/Futura-Bold.woff2', // Path to your file
   variable: '--font-futura',           // Optional: CSS variable name
@@ -28,11 +24,7 @@ const social = localFont({
   variable: '--font-social',           // Optional: CSS variable name
   display: 'swap',
 })
-const helvitica = localFont({
-  src: './fonts/HelveticaNowText-Regular.woff2', // Path to your file
-  variable: '--font-helvitica',           // Optional: CSS variable name
-  display: 'swap',
-})
+
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -56,7 +48,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${helvitica.variable} ${social.variable} ${outfit.variable} ${futura.variable} ${myFont.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} $ ${social.variable} ${outfit.variable} ${futura.variable}  ${geistMono.variable} antialiased`}
       >
 
         <LenisProvider>
