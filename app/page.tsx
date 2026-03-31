@@ -428,10 +428,10 @@ export default function Home() {
       <div className="h-screen text-background -mt-[1%] overflow-hidden bg-[#e3d7a9] sm:px-6 px-2  relative z-30">
           {/* stickers  */}
           <div>
-            <div className={`absolute top-[20%] right-[2%] ${aboutLogo ? 'rotate-10' : 'rotate-0'}`}>
+            <div className={`absolute top-[10%] right-[2%] ${aboutLogo ? 'rotate-10' : 'rotate-0'}`}>
             <Sticker link="/img/naruto.webp"/>
           </div>
-          <div className={`absolute top-[40%] left-[25%] ${aboutLogo ? 'rotate-10' : 'rotate-0'}`}>
+          <div className={`absolute top-[35%] left-[5%] ${aboutLogo ? 'rotate-10' : 'rotate-0'}`}>
             <Sticker link="/img/speaker.webp"/>
           </div>
           

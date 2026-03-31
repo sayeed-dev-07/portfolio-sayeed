@@ -1,7 +1,8 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -46,30 +47,19 @@ const getStatusBadge = (status: string) => {
 };
 
 export default function EducationSection() {
-    const sectionRef = useRef(null);
-    const lineRef = useRef(null);
+    const sectionRef = useRef<HTMLDivElement | null>(null);
+    const timelineRef = useRef<HTMLDivElement | null>(null);
     const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
     const dotsRef = useRef<(HTMLDivElement | null)[]>([]);
 
-    useGSAP(() => {
-        // 1. Draw the vertical line (Lightweight, applies to all devices)
-        gsap.fromTo(
-            lineRef.current,
-            { scaleY: 0 },
-            {
-                scaleY: 1,
-                ease: "none",
-                force3D: true, // Forces GPU acceleration
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "clamp(top 90%)",
-                    end: "clamp(bottom 90%)",
-                    scrub: true,
-                },
-            }
-        );
+    const { scrollYProgress } = useScroll({
+        target: timelineRef,
+        offset: ["start 75%", "end 85%"],
+    });
 
-        // 2. Responsive Animations using matchMedia
+    const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
+    useGSAP(() => {
         const mm = gsap.matchMedia();
 
         mm.add(
@@ -101,14 +91,14 @@ export default function EducationSection() {
                         }
                     );
 
-                    // Card Animation: Slide up for Mobile, Scale for Desktop
+                    // Card Animation: Slide from the right on mobile, scale on desktop
                     gsap.fromTo(
                         card,
                         isMobile 
-                            ? { y: 40, opacity: 0 } // Mobile: smoother slide up
+                            ? { x: 80, opacity: 0 }
                             : { scale: 0.85, opacity: 0 }, // Desktop: scale up (optimized from 0 to 0.85 to reduce layout thrashing)
                         {
-                            y: 0,
+                            x: 0,
                             scale: 1,
                             opacity: 1,
                             duration: 0.5,
@@ -124,6 +114,10 @@ export default function EducationSection() {
                 });
             }
         );
+
+        return () => {
+            mm.revert();
+        };
     }, { scope: sectionRef });
 
     return (
@@ -144,12 +138,15 @@ export default function EducationSection() {
                     </p>
                 </header>
 
-                <div className="relative">
+                <div ref={timelineRef} className="relative">
                     {/* Vertical Timeline Line */}
-                    <div
-                        ref={lineRef}
-                        className="absolute will-change-transform top-0 bottom-0 left-5.75 md:left-1/2 w-0.5 bg-black md:-translate-x-1/2 origin-top"
-                    />
+                    <div className="absolute top-0 bottom-0 left-6 md:left-1/2 -translate-x-1/2">
+                        <div className="h-full w-0.5 " />
+                        <motion.div
+                            style={{ height: lineHeight }}
+                            className="absolute top-0 left-1/2 w-0.5 -translate-x-1/2 origin-top bg-black shadow-md"
+                        />
+                    </div>
 
                     {educationData.map((item, index) => {
                         const isEven = index % 2 === 0;

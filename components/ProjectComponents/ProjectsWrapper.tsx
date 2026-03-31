@@ -107,7 +107,7 @@ export default function ScrollSection() {
 
                     </div>
                 </div>
-                <div className="flex flex-wrap gap-x-4 gap-y-3">
+                <div className="md:flex grid grid-cols-2 md:flex-wrap gap-x-4 gap-y-3">
                     {projectData.map((item, index) => (
                         <div
                             key={item.id}
@@ -129,7 +129,7 @@ export default function ScrollSection() {
             {/* RIGHT SIDE: Scrollable Cards */}
             <div className="md:w-2/3 w-full z-40 flex flex-col overflow-hidden">
                 {projectData.map((item) => (
-                    <div key={item.id} className="h-screen flex items-center justify-center">
+                    <div key={item.id} className=" h-screen flex items-center  justify-center">
                         <ProjectCard
                             data={item}
                             func={indexChange}

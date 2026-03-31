@@ -27,6 +27,14 @@ export const projectData: ProjectType[] = [
   },
   {
     id: 2,
+    name: 'Sellora',
+    tech: ['React', 'Next.js', 'GSAP', 'Framer Motion', 'TypeScript'],
+    live: 'https://sellora-theta.vercel.app/',
+    code: 'https://github.com/sayeed-dev-07/sellora.git',
+    img: '/img/sellora.PNG',
+  },
+  {
+    id: 3,
     name: 'Spylt',
     tech: ['React', 'Next.js', 'GSAP', 'Lenis', 'TypeScript'],
     live: 'https://spylt-navy.vercel.app/',
@@ -34,7 +42,7 @@ export const projectData: ProjectType[] = [
     img: '/img/spylt.PNG',
   },
   {
-    id: 3,
+    id: 4,
     name: 'No Good Co.',
     tech: ['React', 'Next.js', 'GSAP', 'TypeScript'],
     live: 'https://no-good-co.vercel.app/',
@@ -42,7 +50,7 @@ export const projectData: ProjectType[] = [
     img: '/img/nogood.PNG',
   },
   {
-    id: 4,
+    id: 5,
     name: 'Sheltr',
     tech: ['React', 'Next.js', 'GSAP', 'TypeScript'],
     live: 'https://sheltr-cyan.vercel.app/',
@@ -50,7 +58,7 @@ export const projectData: ProjectType[] = [
     img: '/img/sheltr.PNG',
   },
   {
-    id: 5,
+    id: 6,
     name: 'ZenManga',
     tech: [
       'React',
