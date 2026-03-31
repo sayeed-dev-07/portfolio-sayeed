@@ -90,6 +90,7 @@ const skillNotes = [
 
 const SkillSection = () => {
     const [activeCategory, setActiveCategory] = useState<CategoryKey>('frontend');
+    const [selectedCategory, setSelectedCategory] = useState<CategoryKey>('frontend');
     const [isSwitching, setIsSwitching] = useState(false);
 
     const skillContainer = useRef<HTMLDivElement | null>(null);
@@ -172,7 +173,7 @@ const SkillSection = () => {
                     scale: 1,
                     rotate: 0,
                     opacity: 0.92,
-                    duration: 1,
+                    duration: 0.55,
                     ease: 'expo.out'
                 }
             );
@@ -180,10 +181,10 @@ const SkillSection = () => {
             gsap.fromTo(
                 chips,
                 {
-                    y: 34,
+                    y: 20,
                     opacity: 0,
-                    scale: 0.94,
-                    rotate: 2,
+                    scale: 0.97,
+                    rotate: 1,
                     force3D: true
                 },
                 {
@@ -191,9 +192,9 @@ const SkillSection = () => {
                     opacity: 1,
                     scale: 1,
                     rotate: 0,
-                    duration: 1.1,
+                    duration: 0.55,
                     ease: 'expo.out',
-                    stagger: { amount: 0.42, from: 'start' },
+                    stagger: { amount: 0.16, from: 'start' },
                     onComplete: () => setIsSwitching(false)
                 }
             );
@@ -212,7 +213,7 @@ const SkillSection = () => {
                 { height: prevHeightRef.current || nextHeight },
                 {
                     height: nextHeight,
-                    duration: 0.8,
+                    duration: 0.35,
                     ease: 'expo.inOut',
                     force3D: true,
                     onComplete: () => {
@@ -225,7 +226,8 @@ const SkillSection = () => {
     );
 
     const handleCategoryChange = (key: CategoryKey) => {
-        if (key === activeCategory || isSwitching) return;
+        if (key === selectedCategory || isSwitching) return;
+        setSelectedCategory(key);
         setIsSwitching(true);
         prevHeightRef.current = listWrapRef.current?.offsetHeight ?? 0;
         const chips = gsap.utils.selector(listRef.current)('.skill-chip');
@@ -233,11 +235,11 @@ const SkillSection = () => {
         gsap
             .timeline()
             .to(chips, {
-                y: -18,
+                y: -10,
                 opacity: 0,
-                duration: 0.38,
+                duration: 0.18,
                 ease: 'power2.inOut',
-                stagger: { amount: 0.16, from: 'start' }
+                stagger: { amount: 0.08, from: 'start' }
             })
             .add(() => setActiveCategory(key));
     };
@@ -309,14 +311,14 @@ const SkillSection = () => {
                 <div className="relative z-20 flex flex-wrap gap-3">
                     {categories.map((cat) => {
                         const catTheme = categoryThemes[cat.key];
-                        const isActive = activeCategory === cat.key;
+                        const isActive = selectedCategory === cat.key;
 
                         return (
                             <button
                                 key={cat.key}
                                 data-active={isActive}
                                 onClick={() => handleCategoryChange(cat.key)}
-                                className={`group relative overflow-hidden cursor-pointer rounded-full border-2 border-black px-4 py-3 text-left transition-all duration-[400ms] ${
+                                className={`group relative overflow-hidden cursor-pointer rounded-full border-2 border-black px-4 py-3 text-left transition-all duration-200 ${
                                     isActive
                                         ? `${catTheme.pill} ${catTheme.pillText} -translate-y-1 shadow-[5px_5px_0_0_rgba(0,0,0,0.88)]`
                                         : 'bg-white/85 text-black/65 shadow-[0_0_0_0_rgba(0,0,0,0)] hover:-translate-y-1 hover:text-black hover:shadow-[5px_5px_0_0_rgba(0,0,0,0.88)]'

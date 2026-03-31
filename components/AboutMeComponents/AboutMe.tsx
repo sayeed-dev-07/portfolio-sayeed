@@ -56,7 +56,7 @@ export default function AboutMe() {
   })
 
   return (
-    <div ref={aboutMeContainer} className='flex overflow-hidden md:flex-row flex-col-reverse pt-[25vh] md:pt-[30vh] items-start font-main justify-around text-4xl text-background px-2 relative pb-[5%]'>
+    <div ref={aboutMeContainer} className='relative flex items-start justify-around overflow-hidden px-2 pb-[5%] pt-[16vh] text-4xl text-background font-main sm:pt-[20vh] md:flex-row md:pt-[30vh] flex-col-reverse'>
       <div ref={starContainer} className='absolute z-1 right-[5%] md:right-auto'>
         <div >
           {img1 ?
