@@ -274,7 +274,7 @@ const Navbar = ({ navOpen }: { navOpen: boolean }) => {
                                 <TextRevealAnimation navOpen={navbarOpen} delayIndex={11} text='contact' />
                                 <TextRevealAnimation style='navitems-span' navOpen={navbarOpen} delayIndex={12} text='contact me' />
                             </div>
-                            <a href='https://drive.google.com/file/d/1nlZpIvGoEJI5rsUm9U3wciM5IJWrUg0K/view?usp=sharing' target='_blank' onMouseLeave={() => setHover(false)} onMouseEnter={() => setHover(true)}  className='flex items-center justify-center flex-col w-fit cursor-pointer'>
+                            <a href='https://drive.google.com/file/d/1M6YBVqmFdTZUbUVPdafnk9PgGca8AGEb/view?usp=sharing' target='_blank' onMouseLeave={() => setHover(false)} onMouseEnter={() => setHover(true)}  className='flex items-center justify-center flex-col w-fit cursor-pointer'>
                                 <TextRevealAnimation navOpen={navbarOpen} delayIndex={11} text='Resume' />
                                 <TextRevealAnimation style='navitems-span' navOpen={navbarOpen} delayIndex={12} text='download resume' />
                             </a>
